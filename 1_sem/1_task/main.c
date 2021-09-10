@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <errno.h>
+
+//-------------------------------------------------------------
+
+const int NUM_PARSING = 2; 
+
+//-------------------------------------------------------------
+
+char const* parsing_input(const int argc, char const *argv[]);
+
+long my_strtol(char const *digit_str, char *end_digit_str);
+
+//-------------------------------------------------------------
+
+int main(const int argc, char const *argv[])
+{
+	char const     *digit_str = parsing_input(argc, argv);  
+	char       *end_digit_str = NULL; 
+
+	long inp_digit = my_strtol(digit_str, end_digit_str);
+
+	for (int i = 1; i <= inp_digit; i++)
+		printf("%d ", i);
+
+	printf("\n");
+	
+	return 0;
+}
+
+//-------------------------------------------------------------
+
+char const* parsing_input(const int argc, char const *argv[])
+{
+	if (argc != NUM_PARSING)
+	{
+		perror("ERROR! \nExecute: ./task_1 __number__\n");
+		exit(EXIT_FAILURE);
+	}
+
+	return argv[NUM_PARSING - 1];
+}
+
+//-------------------------------------------------------------
+
+long my_strtol(char const *digit_str, char *end_digit_str)
+{
+	errno = 0;
+
+	long inp_digit = strtol(digit_str, &end_digit_str, 10);
+
+	if (errno != 0)
+	{
+		perror("ERROR! strtol(): smth went wrong...\n");
+		exit(EXIT_FAILURE);
+	}
+	if (*end_digit_str != '\0')
+	{
+		perror("ERROR! strtol(): not a number...\n");
+		exit(EXIT_FAILURE);
+	}
+	if (inp_digit < 1)
+	{
+		perror("ERROR! Please, input natural number\n");
+		exit(EXIT_FAILURE);
+	}
+
+	return inp_digit;	
+}
+
