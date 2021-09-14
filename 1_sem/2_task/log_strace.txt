@@ -1,0 +1,3 @@
+in_fd = -1
+errno = 2
+EACCES = 13

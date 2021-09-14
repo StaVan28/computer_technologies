@@ -36,7 +36,7 @@ char const* parsing_input(const int argc, char const *argv[])
 {
 	if (argc != NUM_PARSING)
 	{
-		perror("ERROR! \nExecute: ./task_1 __number__\n");
+		fprintf(stderr, "ERROR! \nExecute: ./a.out <number>\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -53,17 +53,17 @@ long my_strtol(char const *digit_str, char *end_digit_str)
 
 	if (errno != 0)
 	{
-		perror("ERROR! strtol(): smth went wrong...\n");
+		fprintf(stderr, "ERROR! strtol(): smth went wrong...\n");
 		exit(EXIT_FAILURE);
 	}
 	if (*end_digit_str != '\0')
 	{
-		perror("ERROR! strtol(): not a number...\n");
+		fprintf(stderr, "ERROR! strtol(): not a number...\n");
 		exit(EXIT_FAILURE);
 	}
 	if (inp_digit < 1)
 	{
-		perror("ERROR! Please, input natural number\n");
+		fprintf(stderr, "ERROR! Please, input natural number\n");
 		exit(EXIT_FAILURE);
 	}
 
