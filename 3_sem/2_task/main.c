@@ -38,8 +38,25 @@ void my_cp(const char* out_file_path, const char* in_file_path)
 	int  num_symb        = 0;
 	char buff[BUFF_SIZE] = {};
 
+	errno = 0;
+
 	int out_fd = open(out_file_path, O_RDONLY);
+	
+	if (errno != 0)
+	{
+		fprintf(stderr, "ERROR! open() out_file\n");
+		exit(EXIT_FAILURE);		
+	}
+
+	errno = 0;
+
 	int  in_fd = open( in_file_path, O_WRONLY | O_CREAT, MODE_OPEN);
+
+	if (errno != 0)
+	{
+		fprintf(stderr, "ERROR! open() in_file\n");
+		exit(EXIT_FAILURE);		
+	}
 
 	while ((num_symb = read(out_fd, buff, BUFF_SIZE)) > 0)
 	{
