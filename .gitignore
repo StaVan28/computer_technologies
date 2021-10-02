@@ -1,3 +1,6 @@
 a.out
 ./3_sem/2_task/out.txt
 token.txt
+*.o
+write_fifo
+read_fifo
