@@ -21,8 +21,8 @@ export Q = @
 export E = $(Q) echo
 
 # bins
-BIN_WR = write
-BIN_RD = read
+BIN_WR = write_fifo
+BIN_RD = read_fifo
 
 # path for directories
 RD_DIR = FIFO_read
@@ -51,7 +51,7 @@ endif
 
 #
 ## launch 
-default: $(BIN_WR) $(BIN_RD)
+default: launch_rd
 
 $(BIN_WR):
 	$(E) "    MAKE RECUR(compile):" $(BIN_WR)
@@ -61,13 +61,22 @@ $(BIN_RD):
 	$(E) "    MAKE RECUR(compile):" $(BIN_RD)
 	$(Q) $(MAKE) -C $(RD_DIR)
 
+launch_wr: $(BIN_WR)
+	$(E) "    LAUNCH:      " $(BIN_WR)
+	$(Q) $(WR_DIR)/$(BIN_WR) ./test.txt
+
+launch_rd: launch_wr $(BIN_RD)
+	$(E) "    LAUNCH:      " $(BIN_RD)
+	$(Q) $(RD_DIR)/$(BIN_RD)
+
+
 #
 ## debugs 
 debug: write_dbg read_dbg
 
 write_dbg: $(BIN_WR)
 	$(E) "    LAUNCH(DBG): " $(BIN_WR)
-	$(Q) strace $(BIN_WR)	
+	$(Q) strace $(BIN_WR) ./test.txt
 
 read_dbg:  $(BIN_RD)
 	$(E) "    LAUNCH(DBG): " $(BIN_RD)
@@ -78,7 +87,7 @@ read_dbg:  $(BIN_RD)
 clean:
 	$(E) "  CLEAN"
 	$(Q) rm $(RD_DIR)/*.o       $(WR_DIR)/*.o       \
-	        $(RD_DIR)/$(BID_RD) $(WR_DIR)/$(BID_WR)
+	        $(RD_DIR)/$(BIN_RD) $(WR_DIR)/$(BIN_WR)
 
 rebuild: clean default
 

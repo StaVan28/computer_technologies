@@ -11,10 +11,10 @@
 #--------------------------------------------------------------------------------------
 
 # source
-BIN = write
-HDR = write.h ../fifo_confih.h
+BIN = write_fifo
+HDR = write.h ../fifo_config.h
 SRC = write.c main_write.c
-OBJ = $(SRC:%.cpp=%.o)
+OBJ = $(SRC:%.c=%.o)
 
 #--------------------------------------------------------------------------------------
 # RULES
@@ -33,6 +33,6 @@ $(BIN): $(OBJ)
 	$(Q) ${CXX} -c ${CXXFLAGS} $(addprefix -I,../) $< -o $@
 
 main_write.o: main_write.c write.h 
-write.o:           write.c write.h fifo_config.h
+write.o:           write.c write.h ../fifo_config.h
 
 

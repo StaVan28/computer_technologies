@@ -11,10 +11,10 @@
 #--------------------------------------------------------------------------------------
 
 # source
-BIN = read
-HDR = read.h ../fifo_confih.h
+BIN = read_fifo
+HDR = read.h ../fifo_config.h
 SRC = read.c main_read.c
-OBJ = $(SRC:%.cpp=%.o)
+OBJ = $(SRC:%.c=%.o)
 
 #--------------------------------------------------------------------------------------
 # RULES
@@ -32,5 +32,5 @@ $(BIN): $(OBJ)
 	$(E) "    C:           " $@
 	$(Q) ${CXX} -c ${CXXFLAGS} $(addprefix -I,../) $< -o $@
 
-main_read.o: main_read.c read.h 
+main_read.o: main_read.c read.h
 read.o:           read.c read.h ../fifo_config.h
