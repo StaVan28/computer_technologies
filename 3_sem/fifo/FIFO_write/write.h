@@ -9,6 +9,8 @@
 
 void write_fifo(const char* file_path);
 
+const char* generate_name(void);
+
 //------------------------------------------------------------
 
 #endif // FIFO_WRITE_H_INCLUDED

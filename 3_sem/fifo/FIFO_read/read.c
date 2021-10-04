@@ -13,7 +13,6 @@ void read_fifo(void)
     data_writing_fifo(rd_fd_fifo, STDOUT_FILENO);
 
     close(rd_fd_fifo);
-    unlink(DFLT_FIFO_PATH);
 }
 
 //---------------------------------------------------------------------
