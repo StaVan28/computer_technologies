@@ -1,4 +1,4 @@
-#include "write.h"	
+#include "write.h"
 
 //---------------------------------------------------------------------
 
@@ -8,13 +8,13 @@ static const int STDIN_ARGS = 2;
 
 int main(const int argc, const char *argv[])
 {
-	if (argc != STDIN_ARGS)
-	{
-		fprintf(stderr, "ERROR! Execute: ./a_out <out_file>\n");
-		return EXIT_FAILURE;
-	}
+    if (argc != STDIN_ARGS)
+    {
+        fprintf(stderr, "ERROR! Execute: ./a_out <out_file>\n");
+        return EXIT_FAILURE;
+    }
 
-	write_fifo(argv[1]);
+    write_fifo(argv[1]);
 
-	return 0;
+    return 0;
 }

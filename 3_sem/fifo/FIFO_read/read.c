@@ -8,51 +8,12 @@ void rm_fifo(void);
 
 void read_fifo(void)
 {
-	int rd_fifo    = 0;
-	int rd_fd_fifo = 0;
+    int rd_fd_fifo = synchr_fifo(O_RDONLY);
 
-	if ((rd_fifo = mkfifo(DFLT_FIFO_PATH, DFLT_FIFO_MODE | O_EXCL)) != 0)
-	{
-		fprintf(stderr, "ERROR! Smth error with mkfifo()\n");
-		exit(EXIT_FAILURE);
-	}
+    data_writing_fifo(rd_fd_fifo, STDOUT_FILENO);
 
-	if ((rd_fd_fifo = open(DFLT_FIFO_PATH, O_RDONLY | O_NONBLOCK)) < 0)
-	{
-		fprintf(stderr, "ERROR! Smth error with open()\n");
-		exit(EXIT_FAILURE);		
-	}
-
-	if (fcntl(rd_fd_fifo, F_SETFL, O_RDONLY) < 0)
-	{
-		fprintf(stderr, "ERROR! Smth error with fcntl()\n");
-		exit(EXIT_FAILURE);	
-	}
-
-	int buff[BUFF_SIZE] = {};
-	int num_symb        = 0;
-
-	while ((num_symb = read(rd_fd_fifo, buff, BUFF_SIZE)) > 0)
-	{
-		if (write(STDOUT_FILENO, buff, num_symb) != num_symb)
-		{
-			fprintf(stderr, "ERROR! Something wrong with write()\n");
-			exit(EXIT_FAILURE);
-		}
-	}
-
-	if (num_symb < 0)
-	{
-		fprintf(stderr, "ERROR! Something wrong with read()\n");
-		exit(EXIT_FAILURE);		
-	}
-
-	unlink(DFLT_FIFO_PATH);
+    close(rd_fd_fifo);
+    unlink(DFLT_FIFO_PATH);
 }
 
 //---------------------------------------------------------------------
-
-void rm_fifo(void)
-{
-	unlink(DFLT_FIFO_PATH);
-}

@@ -51,7 +51,7 @@ endif
 
 #
 ## launch 
-default: launch_rd
+default: launch_wr
 
 $(BIN_WR):
 	$(E) "    MAKE RECUR(compile):" $(BIN_WR)
@@ -65,7 +65,7 @@ launch_wr: $(BIN_WR)
 	$(E) "    LAUNCH:      " $(BIN_WR)
 	$(Q) $(WR_DIR)/$(BIN_WR) ./test.txt
 
-launch_rd: launch_wr $(BIN_RD)
+launch_rd: $(BIN_RD)
 	$(E) "    LAUNCH:      " $(BIN_RD)
 	$(Q) $(RD_DIR)/$(BIN_RD)
 

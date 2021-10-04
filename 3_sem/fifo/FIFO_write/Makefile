@@ -13,7 +13,7 @@
 # source
 BIN = write_fifo
 HDR = write.h ../fifo_config.h
-SRC = write.c main_write.c
+SRC = write.c main_write.c ../fifo_config.c
 OBJ = $(SRC:%.c=%.o)
 
 #--------------------------------------------------------------------------------------
@@ -32,7 +32,8 @@ $(BIN): $(OBJ)
 	$(E) "    C:           " $@
 	$(Q) ${CXX} -c ${CXXFLAGS} $(addprefix -I,../) $< -o $@
 
-main_write.o: main_write.c write.h 
-write.o:           write.c write.h ../fifo_config.h
+main_write.o:         main_write.c write.h 
+write.o:                   write.c write.h ../fifo_config.h
+../fifo_config.o: ../fifo_config.c         ../fifo_config.h
 
 

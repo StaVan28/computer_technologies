@@ -20,6 +20,12 @@ static const char   DFLT_FIFO_PATH[] = "./my_fifo";
 
 #define BUFF_SIZE 4096
 
+//!
+
+int synchr_fifo(int flags);
+
+void data_writing_fifo(int from_fd, int to_fd);
+
 //------------------------------------------------------------
 
 #endif // FIFO_CONFIG_H_INCLUDED
