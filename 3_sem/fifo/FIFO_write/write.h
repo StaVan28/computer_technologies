@@ -7,9 +7,9 @@
 
 //------------------------------------------------------------
 
-void write_fifo(const char* file_path);
+void        write_fifo     (const char* file_path);
 
-const char* generate_name(void);
+const char* read_from_fifo (int rd_fd_fifo);
 
 //------------------------------------------------------------
 
