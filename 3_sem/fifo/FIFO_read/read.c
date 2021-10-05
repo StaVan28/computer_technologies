@@ -22,13 +22,13 @@ void read_fifo (void)
     int wr_fd_fifo = synchr_fifo (DFLT_FIFO_PATH, O_WRONLY);
 
     write_to_fifo (wr_fd_fifo, secr_name);
-
+/*
     if (!is_can_read_fifo (secr_fd_fifo))
     {
         fprintf (stderr, "ERROR! Time out!\n");
         exit (EXIT_FAILURE);  
     }
-
+*/
     data_writing_fifo (secr_fd_fifo, STDOUT_FILENO);
 
     unlink (secr_name);
@@ -51,7 +51,7 @@ const char* generate_name (void)
         exit (EXIT_FAILURE);        
     }
 
-    sprintf (name_buff, "./%d%d", secret_digit, cur_pid);
+    sprintf (name_buff, "./secr_fifo_%d", secret_digit, cur_pid);
 
     return name_buff;
 }
