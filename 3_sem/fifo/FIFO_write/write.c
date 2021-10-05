@@ -10,6 +10,12 @@ void write_fifo (const char* file_path)
     
     int secr_fd_fifo = synchr_fifo (secr_name, O_WRONLY | O_NONBLOCK);
 
+    if (fcntl(secr_fd_fifo, F_SETFL, O_WRONLY) < 0)
+    {
+        fprintf (stderr, "ERROR! Smth error with fcntl()\n");
+        exit (EXIT_FAILURE);    
+    }
+
     int  rd_fd_file = 0;    
     if ((rd_fd_file = open (file_path, O_RDONLY)) < 0)
     {
