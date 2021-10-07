@@ -64,10 +64,12 @@ $(BIN_RD):
 launch_wr: $(BIN_WR)
 	$(E) "    LAUNCH:      " $(BIN_WR)
 	$(Q) $(WR_DIR)/$(BIN_WR) ./test.txt
+	$(Q) rm secr_name general_fifo >&
 
 launch_rd: $(BIN_RD)
 	$(E) "    LAUNCH:      " $(BIN_RD)
 	$(Q) $(RD_DIR)/$(BIN_RD)
+	$(Q) rm secr_name general_fifo >&
 
 
 #
