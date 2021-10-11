@@ -25,15 +25,15 @@ void read_fifo (void)
 
     data_writing_fifo (secr_fifo, STDOUT_FILENO);
 
-    close(secr_fifo);
-    close(dflt_fifo);
+    close (secr_fifo);
+    close (dflt_fifo);
 }
 
 //---------------------------------------------------------------------
 
 void transfer_pid_fifo (int dflt_fifo, pid_t secr_pid)
 {
-    if (write (dflt_fifo, &secr_pid, sizeof(pid_t)) < 0)
+    if (write (dflt_fifo, &secr_pid, sizeof (pid_t)) < 0)
     {
         fprintf (stderr, "ERROR! Something wrong with write()\n");
         exit (EXIT_FAILURE);        

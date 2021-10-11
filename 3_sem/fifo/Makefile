@@ -64,12 +64,12 @@ $(BIN_RD):
 launch_wr: $(BIN_WR)
 	$(E) "    LAUNCH:      " $(BIN_WR)
 	$(Q) $(WR_DIR)/$(BIN_WR) ./test.txt
-	$(Q) rm ./general_fifo ./secr_name_* 2> /dev/null; exit 0
+	$(Q) rm /tmp/general_fifo /tmp/secr_name_* 2> /dev/null; exit 0
 
 launch_rd: $(BIN_RD)
 	$(E) "    LAUNCH:      " $(BIN_RD)
 	$(Q) $(RD_DIR)/$(BIN_RD)
-	$(Q) rm ./general_fifo ./secr_name_* 2> /dev/null; exit 0
+	$(Q) rm /tmp/general_fifo /tmp/secr_name_* 2> /dev/null; exit 0
 
 
 #

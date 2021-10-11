@@ -25,9 +25,9 @@ void write_fifo (const char* file_path)
 
     data_writing_fifo (rd_file, secr_fifo);
 
-    close(dflt_fifo);
-    close(rd_file);
-    close(secr_fifo);
+    close (dflt_fifo);
+    close (rd_file);
+    close (secr_fifo);
 }
 
 //---------------------------------------------------------------------
@@ -36,7 +36,7 @@ pid_t get_pid_fifo (int dflt_fifo)
 {
     pid_t pid;
 
-    if (read (dflt_fifo, &pid, sizeof(pid_t)) < 0)
+    if (read (dflt_fifo, &pid, sizeof (pid_t)) < 0)
     {
         fprintf (stderr, "ERROR! Something wrong with read()\n");
         exit (EXIT_FAILURE);        
