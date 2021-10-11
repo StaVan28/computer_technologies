@@ -2,6 +2,10 @@
 
 //---------------------------------------------------
 
+pid_t get_pid_fifo(int dflt_fifo);
+
+//---------------------------------------------------
+
 int main (int argc, char const *argv[])
 {
     assert (argc == 2);
@@ -23,10 +27,13 @@ int main (int argc, char const *argv[])
         exit (EXIT_FAILURE);
     }
 
+    pid_t       secr_pid  = get_pid_fifo(dflt_fifo);
+    const char* secr_name = create_name (secr_pid);
+
     //! CONNECT WITH SECR FIFO
 
     int  secr_fifo = 0;
-    if ((secr_fifo = open (SECR_FIFO, O_WRONLY)) < 0)
+    if ((secr_fifo = open (secr_name, O_WRONLY)) < 0)
     {
         fprintf (stderr, "ERROR! Smth with open()\n");
         exit (EXIT_FAILURE);
@@ -53,3 +60,16 @@ int main (int argc, char const *argv[])
 }
 
 //---------------------------------------------------
+
+pid_t get_pid_fifo(int dflt_fifo)
+{
+    pid_t pid;
+ 
+    if (read (dflt_fifo, &pid, sizeof(pid_t)) < 0)
+    {
+        fprintf (stderr, "ERROR! Something wrong with read()\n");
+        exit (EXIT_FAILURE);        
+    }
+
+    return pid;
+}

@@ -8,11 +8,11 @@ comp_wr:
 
 launch_wr: comp_wr
 	./main_wr ./test.txt
-	@ rm ./general_fifo ./secr_fifo 2> /dev/null; exit 0
+	@ rm ./general_fifo ./secr_fifo* 2> /dev/null; exit 0
 
 launch_rd: comp_rd
 	./main_rd
-	@ rm ./general_fifo ./secr_fifo 2> /dev/null; exit 0
+	@ rm ./general_fifo ./secr_fifo* 2> /dev/null; exit 0
 
 clean:
-	rm main_rd main_wr ./general_fifo ./secr_fifo 2> /dev/null; exit 0
+	rm main_rd main_wr ./general_fifo ./secr_fifo* 2> /dev/null; exit 0
