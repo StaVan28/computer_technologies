@@ -1,69 +1,81 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <unistd.h>
-#include <limits.h>
-#include <time.h>
-#include <stdbool.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <assert.h>
-
+#include "fifo_config.h"
 //---------------------------------------------------
 
-const char* DFLT_FIFO = "./general_fifo";
-const int   DFLT_MODE = 0666;
-
-//!
-
-#define BUFF_SIZE   4096
+bool is_can_read_fifo (int secr_fd_fifo);
 
 //---------------------------------------------------
 
 int main (int argc, char const *argv[])
 {
-	assert(argc == 2);
+    //! CREATE AND CONNECT WITH SECR FIFO
 
-	if (mkfifo (DFLT_FIFO, DFLT_MODE) < 0)
-	{
-		fprintf (stderr, "ERROR! Smth with mkfifo()\n");
-		exit (EXIT_FAILURE);
-	}
+    if (mkfifo (SECR_FIFO, DFLT_MODE) != 0 && errno != EEXIST)
+    {
+        fprintf (stderr, "ERROR! Smth with mkfifo()\n");
+        exit (EXIT_FAILURE);
+    }
 
-	int  wr_fifo = 0;
-	if ((wr_fifo = open (DFLT_FIFO, O_WRONLY)) < 0)
-	{
-		fprintf (stderr, "ERROR! Smth with open()\n");
-		exit (EXIT_FAILURE);
-	}
+    errno = 0;
 
-	int  rd_file = 0;
-	if ((rd_file = open (argv[1], O_RDONLY)) < 0)
-	{
-		fprintf (stderr, "ERROR! Smth with open()\n");
-		exit (EXIT_FAILURE);
-	}
+    int  secr_fifo = 0;
+    if ((secr_fifo = open (SECR_FIFO, O_RDONLY | O_NONBLOCK)) < 0)
+    {
+        fprintf (stderr, "ERROR! Smth with open()\n");
+        exit (EXIT_FAILURE);
+    }
+    
+    //! CREATE AND CONNECT WITH DFLT FIFO
 
-	int  num_symbols     = 0;
-	char buff[BUFF_SIZE] = {};
+    if (mkfifo (DFLT_FIFO, DFLT_MODE) != 0 && errno != EEXIST)
+    {
+        fprintf (stderr, "ERROR! Smth with mkfifo()\n");
+        exit (EXIT_FAILURE);
+    }
 
-	while ((num_symbols = read (rd_file, buff, BUFF_SIZE)) > 0)
-	{
-		if (write (wr_fifo, buff, BUFF_SIZE) != num_symbols)
-		{
-			fprintf (stderr, "ERROR! Smth with write()\n");
-			exit (EXIT_FAILURE);			
-		}
-	}
+    errno = 0;
 
-	if (num_symbols < 0)
-	{
-		fprintf (stderr, "ERROR! Smth with read()\n");
-		exit (EXIT_FAILURE);
-	}
+    int  dflt_fifo = 0;
+    if ((dflt_fifo = open (DFLT_FIFO, O_WRONLY)) < 0)
+    {
+        fprintf (stderr, "ERROR! Smth with open()\n");
+        exit (EXIT_FAILURE);
+    }
 
-	
-	return 0;
+    // WAIT main_wr.c
+
+    if(!is_can_read_fifo (secr_fifo))
+    {
+        fprintf (stderr, "ERROR! Time out...\n");
+        exit (EXIT_FAILURE);
+    }
+    
+    //! WRITE TO STDOUT
+
+    write_data (secr_fifo, STDOUT_FILENO);
+
+    close(secr_fifo);
+    close(dflt_fifo);
+
+    return 0;
+}
+
+//---------------------------------------------------
+
+bool is_can_read_fifo (int secr_fd_fifo)
+{
+    int num_fd = secr_fd_fifo + 1;
+
+    fd_set read_fds = {};
+    FD_ZERO (              &read_fds);
+    FD_SET  (secr_fd_fifo, &read_fds);
+
+    struct timeval tv_fifo = {};
+    tv_fifo.tv_sec  = 5;
+    tv_fifo.tv_usec = 0;
+
+    int ret_select = select (num_fd, &read_fds, NULL, NULL, &tv_fifo);
+    if (ret_select <= 0)
+        return false;
+    else
+        return true;
 }

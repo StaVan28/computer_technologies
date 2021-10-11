@@ -1,52 +1,55 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <unistd.h>
-#include <limits.h>
-#include <time.h>
-#include <stdbool.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-
-//---------------------------------------------------
-
-const char* DFLT_FIFO = "./general_fifo";
-const int   DFLT_MODE = 0666;
-
-//!
-
-#define BUFF_SIZE 4096
+#include "fifo_config.h"
 
 //---------------------------------------------------
 
 int main (int argc, char const *argv[])
 {
-	int  rd_fifo = 0;
-	if ((rd_fifo = open (DFLT_FIFO, O_RDONLY)) < 0)
-	{
-		fprintf (stderr, "ERROR! Smth with open()\n");
-		exit (EXIT_FAILURE);
-	}
+    assert (argc == 2);
+    
+    //! CREATE AND CONNECT WITH DFLT FIFO
 
-	int  num_symbols     = 0;
-	char buff[BUFF_SIZE] = {};
+    if (mkfifo (DFLT_FIFO, DFLT_MODE) != 0 && errno != EEXIST)
+    {
+        fprintf (stderr, "ERROR! Smth with mkfifo()\n");
+        exit (EXIT_FAILURE);
+    }
 
-	while ((num_symbols = read (rd_fifo, buff, BUFF_SIZE)) > 0)
-	{
-		if (write (STDOUT_FILENO, buff, BUFF_SIZE) != num_symbols)
-		{
-			fprintf (stderr, "ERROR! Smth with write()\n");
-			exit (EXIT_FAILURE);			
-		}
-	}
+    errno = 0;
 
-	if (num_symbols < 0)
-	{
-		fprintf (stderr, "ERROR! Smth with read()\n");
-		exit (EXIT_FAILURE);
-	}
+    int  dflt_fifo = 0;
+    if ((dflt_fifo = open (DFLT_FIFO, O_RDONLY)) < 0)
+    {
+        fprintf (stderr, "ERROR! Smth with open()_dflt\n");
+        exit (EXIT_FAILURE);
+    }
 
-	return 0;
+    //! CONNECT WITH SECR FIFO
+
+    int  secr_fifo = 0;
+    if ((secr_fifo = open (SECR_FIFO, O_WRONLY)) < 0)
+    {
+        fprintf (stderr, "ERROR! Smth with open()\n");
+        exit (EXIT_FAILURE);
+    }
+
+    //! OPEN FILE
+
+    int  rd_file = 0;
+    if ((rd_file = open (argv[1], O_RDONLY)) < 0)
+    {
+        fprintf (stderr, "ERROR! Smth with open()\n");
+        exit (EXIT_FAILURE);
+    }
+
+    //! WRITE TO SECR FIFO
+
+    write_data (rd_file, secr_fifo);
+
+    close(dflt_fifo);
+    close(rd_file);
+    close(secr_fifo);
+
+    return 0;
 }
+
+//---------------------------------------------------

@@ -8,10 +8,9 @@ void write_fifo (const char* file_path)
 
     pid_t       secr_pid  = read_from_fifo (rd_fd_fifo);
     const char* secr_name = create_name (secr_pid);
-    printf ("secr_name = {%s}\n", secr_name);
     
-    int  secr_fd_fifo = 0;
-    if ((secr_fd_fifo = open ("./secr_name", O_WRONLY)) < 0)
+    int  secr_fd_fifo = 0;    
+    if ((secr_fd_fifo = open (secr_name, O_WRONLY | O_NONBLOCK)) < 0)
     {
         fprintf (stderr, "ERROR! Smth error with open()_1\n");
         exit (EXIT_FAILURE);     

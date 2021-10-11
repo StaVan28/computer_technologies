@@ -4,35 +4,20 @@
 
 int synchr_fifo (const char* fifo_path, int flags)
 {
-    int fifo    = 0;
     int fd_fifo = 0;
 
-    if (access (fifo_path, F_OK) == -1)
+    if ((mkfifo (fifo_path, DFLT_FIFO_MODE) < 0) && (errno != EEXIST))
     {
-        printf("(____)open()   {synchr_fifo_if}\n\n");
+        fprintf (stderr, "ERROR! Smth with mkfifo()\n");
+        exit (EXIT_FAILURE);
+    }
 
-        if ((fd_fifo = open (fifo_path, flags)) < 0)
-        {
-            fprintf (stderr, "ERROR! Smth error with open()\n");
-            exit (EXIT_FAILURE);
-        }   
-    }   
-    else
+    errno = 0;
+
+    if ((fd_fifo = open (fifo_path, flags)) < 0)
     {
-        printf("(____)mkfifo() {synchr_fifo_else}\n");
-        printf("(____)open()   {synchr_fifo_else}\n\n");
-
-        if ((fifo = mkfifo (fifo_path, DFLT_FIFO_MODE)) != 0)
-        {
-            fprintf (stderr, "ERROR! Smth error with mkfifo()\n");
-            exit (EXIT_FAILURE);
-        }
-
-        if ((fd_fifo = open (fifo_path, flags)) < 0)
-        {
-            fprintf (stderr, "ERROR! Smth error with open()\n");
-            exit (EXIT_FAILURE);
-        }
+        fprintf (stderr, "ERROR! Smth with open()\n");
+        exit (EXIT_FAILURE);
     }
 
     return fd_fifo;

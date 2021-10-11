@@ -11,7 +11,7 @@ void read_fifo        (void);
 
 int  create_secr_fifo (const char* secr_name, int flags);
 
-void write_to_fifo    (int wr_fd_fifo, pid_t* secr_pid);
+void write_to_fifo    (int wr_fd_fifo, pid_t secr_pid);
 
 bool is_can_read_fifo (int secr_fd_fifo);
 

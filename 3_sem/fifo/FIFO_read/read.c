@@ -2,7 +2,6 @@
 
 //---------------------------------------------------------------------
 
-static const int RAND_SIZE = 100000000;
 static const int WAIT_TIME = 5;
 
 //---------------------------------------------------------------------
@@ -11,20 +10,19 @@ void read_fifo (void)
 {
     pid_t       secr_pid  = getpid();
     const char* secr_name = create_name (secr_pid);
-    printf ("secr_name = {%s}\n", secr_name);
 
-    int secr_fd_fifo = create_secr_fifo ("./secr_name", O_RDONLY | O_NONBLOCK);
+    int secr_fd_fifo = synchr_fifo (secr_name, O_RDONLY | O_NONBLOCK);
 
     int wr_fd_fifo   = synchr_fifo (DFLT_FIFO_PATH, O_WRONLY);
 
-    write_to_fifo (wr_fd_fifo, &secr_pid);
-/*
+    write_to_fifo (wr_fd_fifo, secr_pid);
+
     if (!is_can_read_fifo (secr_fd_fifo))
     {
         fprintf (stderr, "ERROR! Time out!\n");
         exit (EXIT_FAILURE);  
     }
-*/
+
     data_writing_fifo (secr_fd_fifo, STDOUT_FILENO);
 }
 
@@ -35,10 +33,7 @@ int create_secr_fifo (const char* secr_name, int flags)
     int    fifo = 0;
     int fd_fifo = 0;
 
-    printf("(____)mkfifo() {create_fifo}\n");
-    printf("(____)open()   {create_fifo}\n\n");
-
-    if ((fifo = mkfifo (secr_name, DFLT_FIFO_MODE)) != 0)
+    if ((fifo = mkfifo (secr_name, DFLT_FIFO_MODE)) != 0 && errno != EEXIST)
     {
         fprintf (stderr, "ERROR! Smth error with mkfifo()\n");
         exit (EXIT_FAILURE);
@@ -55,9 +50,9 @@ int create_secr_fifo (const char* secr_name, int flags)
 
 //---------------------------------------------------------------------
 
-void write_to_fifo (int wr_fd_fifo, pid_t* secr_pid)
+void write_to_fifo (int wr_fd_fifo, pid_t secr_pid)
 {
-    if (write (wr_fd_fifo, secr_pid, sizeof(pid_t)) < 0)
+    if (write (wr_fd_fifo, &secr_pid, sizeof(pid_t)) < 0)
     {
         fprintf (stderr, "ERROR! Something wrong with write()\n");
         exit (EXIT_FAILURE);        
@@ -84,5 +79,6 @@ bool is_can_read_fifo (int secr_fd_fifo)
     else
         return true;
 }
+
 
 //---------------------------------------------------------------------
