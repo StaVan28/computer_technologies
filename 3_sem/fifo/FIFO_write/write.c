@@ -12,14 +12,14 @@ void write_fifo (const char* file_path)
     int  secr_fifo = 0;    
     if ((secr_fifo = open (secr_name, O_WRONLY | O_NONBLOCK)) < 0)
     {
-        fprintf (stderr, "ERROR! Smth error with open()_1\n");
+        perror ("ERROR! Smth error with open()_1\n");
         exit (EXIT_FAILURE);     
     }
 
     int  rd_file = 0;    
     if ((rd_file = open (file_path, O_RDONLY)) < 0)
     {
-        fprintf (stderr, "ERROR! Smth error with open()\n");
+        perror ("ERROR! Smth error with open()\n");
         exit (EXIT_FAILURE);
     }
 
@@ -38,7 +38,7 @@ pid_t get_pid_fifo (int dflt_fifo)
 
     if (read (dflt_fifo, &pid, sizeof (pid_t)) < 0)
     {
-        fprintf (stderr, "ERROR! Something wrong with read()\n");
+        perror ("ERROR! Something wrong with read()\n");
         exit (EXIT_FAILURE);        
     }
 

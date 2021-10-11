@@ -8,7 +8,7 @@ int synchr_fifo (const char* fifo_path, int flags)
 
     if ((mkfifo (fifo_path, DFLT_FIFO_MODE) < 0) && (errno != EEXIST))
     {
-        fprintf (stderr, "ERROR! Smth with mkfifo()\n");
+        perror ("ERROR! Smth with mkfifo()\n");
         exit (EXIT_FAILURE);
     }
 
@@ -16,7 +16,7 @@ int synchr_fifo (const char* fifo_path, int flags)
 
     if ((fd_fifo = open (fifo_path, flags)) < 0)
     {
-        fprintf (stderr, "ERROR! Smth with open()\n");
+        perror ("ERROR! Smth with open()\n");
         exit (EXIT_FAILURE);
     }
 
@@ -30,7 +30,7 @@ const char* create_name (pid_t secr_pid)
     char* name_buff = (char*) calloc (1, MAX_NAME);
     if   (name_buff == NULL)
     {
-        fprintf (stderr, "ERROR! Smth error with calloc()\n");
+        perror ("ERROR! Smth error with calloc()\n");
         exit (EXIT_FAILURE);        
     }
 
@@ -50,14 +50,14 @@ void data_writing_fifo (int from_fd, int to_fd)
     {
         if (write (to_fd, buff, num_symb) != num_symb)
         {
-            fprintf (stderr, "ERROR! Something wrong with write()\n");
+            perror ("ERROR! Something wrong with write()\n");
             exit (EXIT_FAILURE);
         }
     }
 
     if (num_symb < 0)
     {
-        fprintf (stderr, "ERROR! Something wrong with read()\n");
+        perror ("ERROR! Something wrong with read()\n");
         exit (EXIT_FAILURE);        
     }
 }
