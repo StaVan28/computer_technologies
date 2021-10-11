@@ -34,7 +34,7 @@ const char* create_name (pid_t secr_pid)
         exit (EXIT_FAILURE);        
     }
 
-    sprintf (name_buff, "./secr_name_%d", secr_pid);
+    sprintf (name_buff, "/tmp/secr_name_%d", secr_pid);
 
     return name_buff;
 }

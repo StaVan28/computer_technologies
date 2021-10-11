@@ -18,7 +18,7 @@
 //------------------------------------------------------------
 
 static const mode_t DFLT_FIFO_MODE = 0666;
-static const char*  DFLT_FIFO_PATH = "./general_fifo";
+static const char*  DFLT_FIFO_PATH = "/tmp/general_fifo";
 
 #define BUFF_SIZE 4096
 #define MAX_NAME  32
