@@ -51,7 +51,7 @@ endif
 
 #
 ## launch 
-default: launch_wr
+default: $(BIN_WR) $(BIN_RD)
 
 $(BIN_WR):
 	$(E) "    MAKE RECUR(compile):" $(BIN_WR)

@@ -20,7 +20,7 @@ void read_fifo (void)
     if (!is_can_read_fifo (secr_fifo))
     {
         perror ("ERROR! Time out!\n");
-        exit (EXIT_FAILURE);  
+        exit   (EXIT_FAILURE);  
     }
 
     data_writing_fifo (secr_fifo, STDOUT_FILENO);
@@ -36,7 +36,7 @@ void transfer_pid_fifo (int dflt_fifo, pid_t secr_pid)
     if (write (dflt_fifo, &secr_pid, sizeof (pid_t)) < 0)
     {
         perror ("ERROR! Something wrong with write()\n");
-        exit (EXIT_FAILURE);        
+        exit   (EXIT_FAILURE);        
     }
 }
 
