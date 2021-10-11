@@ -13,7 +13,7 @@ int  create_secr_fifo  (const char* secr_name, int flags);
 
 void transfer_pid_fifo (int dflt_fifo, pid_t secr_pid);
 
-bool is_can_read_fifo  (int secr__fifo);
+bool is_can_read_fifo  (int secr_fifo);
 
 //------------------------------------------------------------
 
