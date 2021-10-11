@@ -27,7 +27,7 @@ int synchr_fifo (const char* fifo_path, int flags)
 
 const char* create_name (pid_t secr_pid)
 {
-    char* name_buff = (char*) calloc (1, MAX_NAME);
+    char* name_buff = (char*) calloc (MAX_NAME, 1);
     if   (name_buff == NULL)
     {
         perror ("ERROR! Smth error with calloc()\n");
