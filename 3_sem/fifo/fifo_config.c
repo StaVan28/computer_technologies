@@ -48,20 +48,12 @@ void data_writing_fifo (int from_fd, int to_fd)
 
     while ((num_symb = read (from_fd, buff, BUFF_SIZE)) > 0)
     {
-        printf("num_symb(while) = %d\n", num_symb);
-
-
-        int write_num = 0;
-        if ((write_num = write (to_fd, buff, num_symb)) != num_symb)
+        if (write (to_fd, buff, num_symb) != num_symb)
         {
             fprintf (stderr, "ERROR! Something wrong with write()\n");
             exit (EXIT_FAILURE);
         }
-        
-        printf("write_num = %d\n", write_num);
     }
-
-    printf("num_symb = %d\n", num_symb);
 
     if (num_symb < 0)
     {

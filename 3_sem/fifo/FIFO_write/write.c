@@ -4,37 +4,39 @@
 
 void write_fifo (const char* file_path)
 {
-    int rd_fd_fifo = synchr_fifo (DFLT_FIFO_PATH, O_RDONLY);
+    int dflt_fifo = synchr_fifo (DFLT_FIFO_PATH, O_RDONLY);
 
-    pid_t       secr_pid  = read_from_fifo (rd_fd_fifo);
-    const char* secr_name = create_name (secr_pid);
+    pid_t       secr_pid  = get_pid_fifo (dflt_fifo);
+    const char* secr_name = create_name  (secr_pid);
     
-    int  secr_fd_fifo = 0;    
-    if ((secr_fd_fifo = open (secr_name, O_WRONLY | O_NONBLOCK)) < 0)
+    int  secr_fifo = 0;    
+    if ((secr_fifo = open (secr_name, O_WRONLY | O_NONBLOCK)) < 0)
     {
         fprintf (stderr, "ERROR! Smth error with open()_1\n");
         exit (EXIT_FAILURE);     
     }
 
-    int  rd_fd_file = 0;    
-    if ((rd_fd_file = open (file_path, O_RDONLY)) < 0)
+    int  rd_file = 0;    
+    if ((rd_file = open (file_path, O_RDONLY)) < 0)
     {
         fprintf (stderr, "ERROR! Smth error with open()\n");
         exit (EXIT_FAILURE);
     }
 
-    data_writing_fifo (rd_fd_file, secr_fd_fifo);
+    data_writing_fifo (rd_file, secr_fifo);
+
+    close(dflt_fifo);
+    close(rd_file);
+    close(secr_fifo);
 }
 
 //---------------------------------------------------------------------
 
-pid_t read_from_fifo (int rd_fd_fifo)
+pid_t get_pid_fifo (int dflt_fifo)
 {
-    int   num_symb = 0;
     pid_t pid;
 
-    while ((num_symb = read (rd_fd_fifo, &pid, sizeof(pid_t))) > 0);
-    if     (num_symb < 0)
+    if (read (dflt_fifo, &pid, sizeof(pid_t)) < 0)
     {
         fprintf (stderr, "ERROR! Something wrong with read()\n");
         exit (EXIT_FAILURE);        

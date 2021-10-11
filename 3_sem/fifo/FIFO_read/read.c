@@ -11,48 +11,29 @@ void read_fifo (void)
     pid_t       secr_pid  = getpid();
     const char* secr_name = create_name (secr_pid);
 
-    int secr_fd_fifo = synchr_fifo (secr_name, O_RDONLY | O_NONBLOCK);
+    int secr_fifo = synchr_fifo (secr_name     , O_RDONLY | O_NONBLOCK);
 
-    int wr_fd_fifo   = synchr_fifo (DFLT_FIFO_PATH, O_WRONLY);
+    int dflt_fifo = synchr_fifo (DFLT_FIFO_PATH, O_WRONLY);
 
-    write_to_fifo (wr_fd_fifo, secr_pid);
+    transfer_pid_fifo (dflt_fifo, secr_pid);
 
-    if (!is_can_read_fifo (secr_fd_fifo))
+    if (!is_can_read_fifo (secr_fifo))
     {
         fprintf (stderr, "ERROR! Time out!\n");
         exit (EXIT_FAILURE);  
     }
 
-    data_writing_fifo (secr_fd_fifo, STDOUT_FILENO);
+    data_writing_fifo (secr_fifo, STDOUT_FILENO);
+
+    close(secr_fifo);
+    close(dflt_fifo);
 }
 
 //---------------------------------------------------------------------
 
-int create_secr_fifo (const char* secr_name, int flags)
+void transfer_pid_fifo (int dflt_fifo, pid_t secr_pid)
 {
-    int    fifo = 0;
-    int fd_fifo = 0;
-
-    if ((fifo = mkfifo (secr_name, DFLT_FIFO_MODE)) != 0 && errno != EEXIST)
-    {
-        fprintf (stderr, "ERROR! Smth error with mkfifo()\n");
-        exit (EXIT_FAILURE);
-    }
-
-    if ((fd_fifo = open (secr_name, flags)) < 0)
-    {
-        fprintf (stderr, "ERROR! Smth error with open()_1\n");
-        exit (EXIT_FAILURE);     
-    }
-
-    return fd_fifo;
-}
-
-//---------------------------------------------------------------------
-
-void write_to_fifo (int wr_fd_fifo, pid_t secr_pid)
-{
-    if (write (wr_fd_fifo, &secr_pid, sizeof(pid_t)) < 0)
+    if (write (dflt_fifo, &secr_pid, sizeof(pid_t)) < 0)
     {
         fprintf (stderr, "ERROR! Something wrong with write()\n");
         exit (EXIT_FAILURE);        
@@ -61,13 +42,13 @@ void write_to_fifo (int wr_fd_fifo, pid_t secr_pid)
 
 //---------------------------------------------------------------------
 
-bool is_can_read_fifo (int secr_fd_fifo)
+bool is_can_read_fifo (int secr_fifo)
 {
-    int num_fd = secr_fd_fifo + 1;
+    int num_fd = secr_fifo + 1;
 
     fd_set read_fds = {};
-    FD_ZERO (              &read_fds);
-    FD_SET  (secr_fd_fifo, &read_fds);
+    FD_ZERO (           &read_fds);
+    FD_SET  (secr_fifo, &read_fds);
 
     struct timeval tv_fifo = {};
     tv_fifo.tv_sec  = WAIT_TIME;
