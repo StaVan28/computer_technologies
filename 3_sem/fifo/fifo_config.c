@@ -43,22 +43,15 @@ const char* create_name (pid_t secr_pid)
 
 void data_writing_fifo (int from_fd, int to_fd)
 {
-    int buff[BUFF_SIZE] = {};
-    int num_symb        = 0;
+    int     num_symb = 0;
 
-    while ((num_symb = read (from_fd, buff, BUFF_SIZE)) > 0)
+    while ((num_symb = splice (from_fd, NULL, to_fd, NULL, PIPE_BUF, SPLICE_F_MOVE)) != 0)
     {
-        if (write (to_fd, buff, num_symb) != num_symb)
+        if (num_symb < 0)
         {
-            perror ("ERROR! Something wrong with write()\n");
-            exit   (EXIT_FAILURE);
+            perror ("ERROR! Smth error with splice()\n");
+            exit   (EXIT_FAILURE);   
         }
-    }
-
-    if (num_symb < 0)
-    {
-        perror ("ERROR! Something wrong with read()\n");
-        exit   (EXIT_FAILURE);        
     }
 }
 

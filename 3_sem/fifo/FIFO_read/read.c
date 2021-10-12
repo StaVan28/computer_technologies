@@ -13,6 +13,12 @@ void read_fifo (void)
 
     int secr_fifo = synchr_fifo (secr_name     , O_RDONLY | O_NONBLOCK);
 
+    if (fcntl(secr_fifo, F_SETFL, O_RDONLY) < 0)
+    {
+        perror ("ERROR! Smth wrong with fcntl()!\n");
+        exit   (EXIT_FAILURE);        
+    }
+
     int dflt_fifo = synchr_fifo (DFLT_FIFO_PATH, O_WRONLY);
 
     transfer_pid_fifo (dflt_fifo, secr_pid);
@@ -21,6 +27,21 @@ void read_fifo (void)
     {
         perror ("ERROR! Time out!\n");
         exit   (EXIT_FAILURE);  
+    }
+
+    int ret_isatty = 0;
+    if (ret_isatty = isatty(STDOUT_FILENO))
+    {
+        if (fcntl (STDOUT_FILENO, F_SETFL, fcntl (STDOUT_FILENO, F_GETFL) & ~O_APPEND))
+        {
+            perror ("ERROR! Smth error with fcntl()!\n");
+            exit   (EXIT_FAILURE);  
+        }
+    }
+    else if (ret_isatty < 0)
+    {
+        perror ("ERROR! Smth error with isatty()!\n");
+        exit   (EXIT_FAILURE);       
     }
 
     data_writing_fifo (secr_fifo, STDOUT_FILENO);
