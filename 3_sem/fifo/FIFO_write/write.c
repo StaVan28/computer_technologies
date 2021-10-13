@@ -10,10 +10,16 @@ void write_fifo (const char* file_path)
     const char* secr_name = create_name  (secr_pid);
     
     int  secr_fifo = 0;    
-    if ((secr_fifo = open (secr_name, O_WRONLY)) < 0)
+    if ((secr_fifo = open (secr_name, O_WRONLY | O_NONBLOCK)) < 0)
     {
         perror ("ERROR! Smth error with open()_1\n");
         exit   (EXIT_FAILURE);     
+    }
+
+    if (fcntl (secr_fifo, F_SETFL, O_WRONLY) < 0)
+    {
+        perror ("ERROR! Smth wrong with fcntl()!\n");
+        exit   (EXIT_FAILURE);        
     }
 
     int  rd_file = 0;    
