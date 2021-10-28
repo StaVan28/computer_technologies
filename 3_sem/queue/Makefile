@@ -50,7 +50,7 @@ default: launch
 ## launch
 launch: $(BIN)
 	$(E) "    LAUNCH:      " $(BIN)
-	$(Q) ./$(BIN) 28 
+	$(Q) ./$(BIN) 3 
 
 #
 ## linking

@@ -8,66 +8,90 @@ int main (int argc, const char *argv[])
 
     int id = create_msg ();
 
-    struct my_msg* buf_pid = (struct my_msg*) calloc (num_proc, sizeof (struct my_msg));
+    int i_proc = 1;
+    int signal = getpid();
 
-    for (int i_proc = 0; i_proc < num_proc; i_proc++)
+    for ( ;i_proc < num_proc + 1; i_proc++)
     {
-		pid_t pid = fork ();
+        pid_t pid = fork ();
 
-		if (pid > 0)
-		{
-            buf_pid[i_proc].type = i_proc;
-			buf_pid[i_proc].pid  = pid;
-		}
-		else if (pid == 0)
-		{
-			// подключть к очереди
-			fprintf (stderr, "I'm child! "
-				             "My indx = %d, my pid = %d\n", i_proc + 1, getpid());
+        if (pid > 0)
+        {
+            continue;
+        }
+        else if (pid == 0)
+        {
+            break;
+        }
+        else if (pid == -1)
+        {
+            //delete_msg (id);
 
-			exit (EXIT_SUCCESS);
-		}
-		else if (pid < 0)
-		{
-	        perror ("ERROR! fork ()");
-	        exit   (EXIT_FAILURE);
-		}
+            fprintf (stderr, "i_proc = %d", i_proc);
+            perror ("ERROR! fork ()");
+            exit   (EXIT_FAILURE);
+        }
     }
 
-    struct msg
+    if (signal == getpid())
     {
-        long type;
-        long number;
-    };
-
-    struct msg test = {1, 28};
-
-    if (buf_pid[0].pid > 0)
-    {
-        if (msgsnd (id , &test, sizeof (long), 0))
+        for (int i = 1; i < num_proc + 1; i++)
         {
-            perror ("ERROR! msgsnd ()");
-            exit   (EXIT_FAILURE);
+            struct my_msg snd_msg = {i};
+
+            fprintf ("");
+
+            if (msgsnd (id , &snd_msg, sizeof(long), 0) < 0)
+            {
+                delete_msg (id);
+
+                printf ("this parent\n");
+                perror ("ERROR! msgsnd ()");
+                exit   (EXIT_FAILURE);
+            }
+
+            struct my_msg get_msg = {};
+
+            if (msgrcv (id, &get_msg, sizeof (long), num_proc + 1, 0) < 0)
+            {
+                delete_msg (id);
+
+                printf ("this parent, errno = %d\n", errno);
+                perror ("ERROR! msgrcv ()");
+                exit   (EXIT_FAILURE);
+            }
         }
     }
     else
     {
-        if (msgrcv (id, &test, sizeof (long), 0, 0))
+        struct my_msg get_msg = {};
+
+        if (msgrcv (id, &get_msg, sizeof (long), i_proc, 0) < 0)
         {
-            perror ("ERROR! msgsnd ()");
+            delete_msg (id);
+
+            printf ("this child\n");
+            perror ("ERROR! msgrcv ()");
             exit   (EXIT_FAILURE);
         }
 
-        printf ("I CCCHILD!\n");
+        printf ("My proc = %ld\n", get_msg.type);
+        fflush (stdout);
+
+        struct my_msg snd_msg = {num_proc + 1};
+
+        if (msgsnd (id , &snd_msg, sizeof(long), 0) < 0)
+        {
+            delete_msg (id);
+
+            printf ("this child\n");
+            perror ("ERROR! msgsnd ()");
+            exit   (EXIT_FAILURE);
+        }
+        
+        exit (EXIT_SUCCESS);
     }
 
-
-    for (int i = 0; i < num_proc; i++)
-    {
-    	printf ("i = %d, pid = %d\n", i, buf_pid[i]);
-    }
-
-    free  (buf_pid);
     delete_msg (id);
 
     return 0;

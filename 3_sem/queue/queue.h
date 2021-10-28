@@ -15,11 +15,8 @@ static const int   DFLT_MSG_MODE = 0660;
 
 struct my_msg
 {
-   long  type;
-   pid_t pid;
+   long type;
 };
-
-static const size_t SIZE_MSG = sizeof (pid_t);
 
 //!
 
