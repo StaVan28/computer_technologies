@@ -13,6 +13,12 @@ int main (int argc, const char *argv[])
 	int fd1 = open (file, O_RDONLY);
 	printf ("fd1 = %x\n", fd1);
 
+	printf ("Pause START\n");
+
+	getchar ();
+
+	printf ("Pause END\n");
+
 	int fd2 = open (file, O_WRONLY);
 	printf ("fd2 = %x\n", fd2);
 
@@ -32,12 +38,6 @@ int fd_test (int fd_1, int fd_2)
 		perror ("ERROR! fstat");
 		exit   (EXIT_FAILURE);
 	}
-
-	printf ("Pause START\n");
-
-	getchar ();
-
-	printf ("Pause END\n");
 
 	if (fstat (fd_2, &buf_2) < 0)
 	{
