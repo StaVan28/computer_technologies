@@ -61,9 +61,9 @@ void create_procs (int* i_proc, int num_proc)
 
 void send_msg (int id, long type)
 {
-    struct my_msg snd_msg = {type, type};
+    struct my_msg snd_msg = {type};
 
-    if (msgsnd (id , &snd_msg, sizeof(long) + sizeof (long), 0) < 0)
+    if (msgsnd (id , &snd_msg, sizeof(long), 0) < 0)
     {
         delete_msg (id);
 
@@ -74,17 +74,15 @@ void send_msg (int id, long type)
 
 //------------------------------------------------------------
 
-struct my_msg recv_msg (int id, long type)
+void recv_msg (int id, long type)
 {
     struct my_msg get_msg = {};
 
-    if (msgrcv (id, &get_msg, sizeof (long) + sizeof (long), type, 0) < 0)
+    if (msgrcv (id, &get_msg, sizeof (long), type, 0) < 0)
     {
         delete_msg (id);
 
         perror ("ERROR! msgrcv ()");
         exit   (EXIT_FAILURE);
     }
-
-    return get_msg;
 }
