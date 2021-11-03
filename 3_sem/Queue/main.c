@@ -26,7 +26,7 @@ int main (int argc, const char *argv[])
     {
         struct my_msg rcv_msg = recv_msg (id, i_proc);
 
-        printf ("Child proc = %ld\n", rcv_msg.type);
+        printf ("Child proc = %ld\n", rcv_msg.msg);
         fflush (stdout);
 
         send_msg (id, num_proc + 1);

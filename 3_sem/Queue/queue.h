@@ -16,6 +16,7 @@ static const int   DFLT_MSG_MODE = 0660;
 struct my_msg
 {
    long type;
+   long msg;
 };
 
 //!
