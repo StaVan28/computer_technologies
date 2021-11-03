@@ -11,8 +11,6 @@ static const char* DFLT_PATH     = ".";
 static const int   DFLT_SEED     = 28;
 static const int   DFLT_MSG_MODE = 0660;
 
-static const int START_PROC = 1;
-
 //!
 
 struct my_msg

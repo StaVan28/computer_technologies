@@ -8,7 +8,7 @@ int main (int argc, const char *argv[])
 
     int id = create_msg ();
 
-    int i_proc = START_PROC;
+    int i_proc = 1;
     int signal = getpid();
 
     create_procs (&i_proc, num_proc);
