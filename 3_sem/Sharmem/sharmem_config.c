@@ -1,4 +1,4 @@
-#include "fifo_config.h"
+#include "sharmem_config.h"
 
 //------------------------------------------------------------
 
@@ -21,22 +21,6 @@ int synchr_fifo (const char* fifo_path, int flags)
     }
 
     return fd_fifo;
-}
-
-//---------------------------------------------------------------------
-
-const char* create_name (pid_t secr_pid)
-{
-    char* name_buff = (char*) calloc (MAX_NAME, 1);
-    if   (name_buff == NULL)
-    {
-        perror ("ERROR! Smth error with calloc()\n");
-        exit   (EXIT_FAILURE);        
-    }
-
-    sprintf (name_buff, "/tmp/secr_name_%d", secr_pid);
-
-    return name_buff;
 }
 
 //------------------------------------------------------------

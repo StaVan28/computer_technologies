@@ -1,16 +1,14 @@
-#ifndef FIFO_WRITE_H_INCLUDED
-#define FIFO_WRITE_H_INCLUDED
+#ifndef WRITE_H_INCLUDED
+#define WRITE_H_INCLUDED
 
 //------------------------------------------------------------
 
-#include "fifo_config.h"
+#include "sharmem_config.h"
 
 //------------------------------------------------------------
 
-void  write_fifo   (const char* file_path);
-
-pid_t get_pid_fifo (int dflt_fifo);
+void writer (const char* file_path);
 
 //------------------------------------------------------------
 
-#endif // FIFO_WRITE_H_INCLUDED
+#endif // WRITE_H_INCLUDED

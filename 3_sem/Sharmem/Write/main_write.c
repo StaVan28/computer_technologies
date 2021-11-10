@@ -14,7 +14,7 @@ int main (const int argc, const char *argv[])
         return EXIT_FAILURE;
     }
 
-    write_fifo (argv[1]);
+    writer (argv[1]);
 
     return 0;
 }

@@ -4,7 +4,7 @@
 
 int main()
 {
-	read_fifo();
+	reader();
 
 	return 0;
 }
