@@ -22,6 +22,12 @@
 
 //------------------------------------------------------------
 
+//! Semaphores
+
+static const int NUM_SEM = 2;
+
+//
+
 static const int    DFLT_FTOK_SEED = 28;
 static const char*  DFLT_FTOK_PATH = "../test.txt";
 static const mode_t DFLT_MODE      = 0660;
@@ -30,9 +36,17 @@ static const mode_t DFLT_MODE      = 0660;
 
 //!
 
-char* create_shm (void);
+int   create_sem (void);
 
-void  delete_shm (char* shmaddr);
+void  delete_sem (int id_sem);
+
+int   create_shm (void);
+
+void  delete_shm (int id_shm);
+
+char*   link_shm (int id_shm);
+
+void  unlink_shm (char* shmaddr);
 
 //------------------------------------------------------------
 
