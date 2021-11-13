@@ -29,7 +29,7 @@ RD_DIR = Read
 WR_DIR = Write
 
 # compiler settings
-export CXX      = gcc 
+export CXX      = gcc	
 export WARNINGS = -Wall -Wextra
 export CXXFLAGS = 
 
@@ -87,7 +87,7 @@ read_dbg:  $(BIN_RD)
 clean:
 	$(E) "  CLEAN"
 	$(Q) rm $(RD_DIR)/*.o       $(WR_DIR)/*.o       \
-	        $(RD_DIR)/$(BIN_RD) $(WR_DIR)/$(BIN_WR)
+	        $(RD_DIR)/$(BIN_RD) $(WR_DIR)/$(BIN_WR) 2> /dev/null; exit 0
 
 rebuild: clean default
 

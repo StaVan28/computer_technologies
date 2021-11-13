@@ -1,0 +1,13 @@
+#! /bin/bash
+
+clear
+
+echo "----------------------------------------------------------------------------------------------"
+echo "Write"
+
+if [ $# -eq 0 ]
+then
+	./write_sharmem ./test.txt
+else
+	./write_sharmem $#
+fi

@@ -1,9 +1,8 @@
-#ifndef FIFO_CONFIG_H_INCLUDED
-#define FIFO_CONFIG_H_INCLUDED
+#ifndef SHARMEM_CONFIG_H_INCLUDED
+#define SHARMEM_CONFIG_H_INCLUDED
 
 //------------------------------------------------------------
 
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -18,18 +17,22 @@
 #include <sys/shm.h>
 #include <sys/sem.h>
 
+#include "debug.h"
+
 //------------------------------------------------------------
 
-static const mode_t DFLT_FIFO_MODE = 0666;
+static const int    DFLT_FTOK_SEED = 28;
+static const char*  DFLT_FTOK_PATH = "../test.txt";
+static const mode_t DFLT_MODE      = 0660;
 
-#define BUFF_SIZE 4096
+#define PAGE_SIZE 4096
 
 //!
 
-int  synchr_fifo       (const char* fifo_path, int flags);
+char* create_shm (void);
 
-void data_writing_fifo (int from_fd, int to_fd);
+void  delete_shm (char* shmaddr);
 
 //------------------------------------------------------------
 
-#endif // FIFO_CONFIG_H_INCLUDED
+#endif // SHARMEM_CONFIG_H_INCLUDED

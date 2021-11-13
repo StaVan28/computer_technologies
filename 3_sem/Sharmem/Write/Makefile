@@ -12,8 +12,8 @@
 
 # source
 BIN = write_sharmem
-HDR = write.h              ../sharmem_config.h
-SRC = write.c main_write.c ../sharmem_config.c
+HDR = write.h              ../sharmem_config.h ../debug.h
+SRC = write.c main_write.c ../sharmem_config.c ../debug.c
 OBJ = $(SRC:%.c=%.o)
 
 #--------------------------------------------------------------------------------------
@@ -37,7 +37,9 @@ $(BIN): $(OBJ)
 	$(Q) ${CXX} -c ${CXXFLAGS} $(addprefix -I,../) $< -o $@
 
 main_write.o:               main_write.c write.h 
-write.o:                         write.c write.h ../sharmem_config.h
+write.o:                         write.c write.h ../sharmem_config.h ../debug.h
 ../sharmem_config.o: ../sharmem_config.c         ../sharmem_config.h
+../debug.o:                   ../debug.c                             ../debug.h
+
 
 

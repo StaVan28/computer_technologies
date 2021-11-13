@@ -2,48 +2,51 @@
 
 //------------------------------------------------------------
 
-int synchr_fifo (const char* fifo_path, int flags)
-{
-    int fd_fifo = 0;
-
-    if ((mkfifo (fifo_path, DFLT_FIFO_MODE) < 0) && (errno != EEXIST))
-    {
-        perror ("ERROR! Smth with mkfifo()\n");
-        exit   (EXIT_FAILURE);
-    }
-
-    errno = 0;
-
-    if ((fd_fifo = open (fifo_path, flags)) < 0)
-    {
-        perror ("ERROR! Smth with open()\n");
-        exit   (EXIT_FAILURE);
-    }
-
-    return fd_fifo;
-}
+static struct my_error_t error_info = {0};
 
 //------------------------------------------------------------
 
-void data_writing_fifo (int from_fd, int to_fd)
+char* create_shm (void)
 {
-    int  num_symb        = 0;
-    char buff[BUFF_SIZE] = {};
-
-    while ((num_symb = read (from_fd, buff, BUFF_SIZE)) > 0)
+    key_t key = -1;
+    if  ((key = ftok (DFLT_FTOK_PATH, DFLT_FTOK_SEED)) < 0)
     {
-        if (write (to_fd, buff, num_symb) != num_symb)
-        {
-            perror ("ERROR! Something wrong with write()\n");
-            exit   (EXIT_FAILURE);
-        }
+        ERROR_INFO ("ftok ()");
+        exit       (EXIT_FAILURE);
     }
 
-    if (num_symb < 0)
+    PRINT_STEP (key, %d);
+
+    int  id = -1;
+    if ((id = shmget (key, PAGE_SIZE, IPC_CREAT | DFLT_MODE)) < 0) 
     {
-        perror ("ERROR! Something wrong with read()\n");
-        exit   (EXIT_FAILURE);     
-    }   
+        ERROR_INFO ("shmmat ()");
+        exit       (EXIT_FAILURE);
+    }
+
+    PRINT_STEP (id, %d);
+
+    void* shmaddr = NULL;
+    if  ((shmaddr = shmat (id, NULL, 0)) == NULL)
+    {
+        ERROR_INFO ("shmat ()");
+        exit       (EXIT_FAILURE);
+    }
+
+    PRINT_STEP (shmaddr, %p);
+
+    return (char*) shmaddr;
+}
+
+//---------------------------
+
+void delete_shm (char* shmaddr)
+{
+    if (shmdt ((void*) shmaddr))
+    {
+        ERROR_INFO ("shmdt ()");
+        exit       (EXIT_FAILURE);        
+    }
 }
 
 //------------------------------------------------------------

@@ -10,7 +10,7 @@ int main (const int argc, const char *argv[])
 {
     if (argc != STDIN_ARGS)
     {
-        perror ("ERROR! Execute: ./a_out <out_file>\n");
+        fprintf (stderr, "ERROR! Execute: ./a_out <out_file>\n");
         return EXIT_FAILURE;
     }
 
