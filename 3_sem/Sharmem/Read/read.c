@@ -1,16 +1,14 @@
 #include "read.h"
 
-//------------------------------------------------------------
-
-static struct my_error_t error_info = {0};
-
 //---------------------------------------------------------------------
 
 void reader (void)
 {
     char* shmaddr = create_shm();
 
-    getchar();
+    PAUSE;
+
+    printf("!!!!!%s!!!!!\n", shmaddr);
 
     delete_shm (shmaddr);
 }

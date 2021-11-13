@@ -3,24 +3,32 @@
 
 //------------------------------------------------------------
 
-struct my_error_t
-{
-    char* file;
-    int   line;
-};
-
-#define ERROR_INFO(err_str)                       \
-		perror  (        "ERROR! " err_str "\n"); \
-        fprintf (stderr, "errno = %d\n", errno);  \
-		                                          \
-		error_info.file = __FILE__;               \
-        error_info.line = __LINE__                \
+#define ERROR_INFO(err_str)                             \
+		perror  (        "ERROR! " err_str);            \
+        fprintf (stderr, "errno = %d\n", errno);        \
+		                                                \
+		fprintf (stderr, "file = {%s}, line = {%d}\n",  \
+                          __FILE__,    __LINE__       ) \
 
 //!
 
-#define PRINT_STEP(arg, print_form)                        \
-        fprintf (stderr, "Get " #arg " > "                 \
-                         #arg " = {"#print_form"}\n", arg) \
+#define DBG_PRINT(pr_str)         \
+        fprintf (stderr, pr_str)  \
+
+//!
+
+#define PRINT_STEP(arg, print_form)                          \
+        fprintf   (stderr, "  Get " #arg " > "               \
+                           #arg " = {"#print_form"}\n", arg) \
+
+//!
+
+#define PAUSE                                          \
+        fprintf (stderr, "\nPAUSE START\n");           \
+        fprintf (stderr, "file = {%s}, line = {%d}",   \
+                          __FILE__,    __LINE__     ); \
+        getchar ();                                    \
+        fprintf (stderr,   "PAUSE END\n")              \
 
 //------------------------------------------------------------
 

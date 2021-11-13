@@ -2,12 +2,10 @@
 
 //------------------------------------------------------------
 
-static struct my_error_t error_info = {0};
-
-//------------------------------------------------------------
-
 char* create_shm (void)
 {
+    DBG_PRINT ("\ncreate_shm()\n\n");
+
     key_t key = -1;
     if  ((key = ftok (DFLT_FTOK_PATH, DFLT_FTOK_SEED)) < 0)
     {
@@ -42,6 +40,10 @@ char* create_shm (void)
 
 void delete_shm (char* shmaddr)
 {
+    DBG_PRINT ("\ndelete_shm()\n\n");
+
+    PRINT_STEP (shmaddr, %p);
+
     if (shmdt ((void*) shmaddr))
     {
         ERROR_INFO ("shmdt ()");

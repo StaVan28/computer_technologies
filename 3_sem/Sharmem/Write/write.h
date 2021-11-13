@@ -7,7 +7,11 @@
 
 //------------------------------------------------------------
 
-void writer (const char* file_path);
+void writer   (const char* file_path);
+
+int  my_open  (const char* file_path);
+
+void my_close (      int   fd_file);
 
 //------------------------------------------------------------
 
