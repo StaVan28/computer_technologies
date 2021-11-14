@@ -7,7 +7,20 @@ echo "Read"
 
 if [ $# -eq 0 ]
 then
-	./read_sharmem
+	./read_sharmem > ../test1.txt
+
+	echo "--------------------"
+	#echo "diff:"
+	#diff ../test.txt ../test1.txt
+
+	#echo "rm:"
+	#rm ../test1.txt
 else
-	./read_sharmem $#
+	./read_sharmem $# > ../test1.txt
+
+	echo "--------------------"
+	echo "diff:"
+	diff $#             ../test1.txt
+
+	rm ./test1.txt
 fi

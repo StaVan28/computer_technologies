@@ -24,7 +24,7 @@
 //!
 
 #define PAUSE                                          \
-        fprintf (stderr, "\nPAUSE START\n");           \
+        fprintf (stderr, "PAUSE START\n");             \
         fprintf (stderr, "file = {%s}, line = {%d}",   \
                           __FILE__,    __LINE__     ); \
         getchar ();                                    \

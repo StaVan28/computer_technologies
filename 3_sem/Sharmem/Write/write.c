@@ -9,17 +9,27 @@ void writer (const char* file_path)
     int   id_shm  = create_shm ();
     char* shmaddr =   link_shm (id_shm); 
 
-    int   fd_file = my_open        (file_path);
     char* tmp_buf = create_tmp_buf ();
+
+    my_semop (id_sem, sync_write, 2);
+
+    int fd_file = my_open (file_path);
 
     DBG_PRINT ("\nstart cycle\n");
     int indx = 1;
 
-    int    num_symb = 1;
-    while (num_symb > 0)
+    int num_symb = -1;
+    do
     {
+        fprintf    (stderr, "\n");
         PRINT_STEP (indx, %d);
         indx++;
+
+        PRINT_STEP       (p_empty, %p);
+        my_semop (id_sem, p_empty, 1);
+
+        PRINT_STEP       (p_mutex, %p);
+        my_semop (id_sem, p_mutex, 1);
 
         if ((num_symb = read (fd_file, tmp_buf, PAGE_SIZE - 1)) < 0)
         {
@@ -31,10 +41,18 @@ void writer (const char* file_path)
 
         memcpy  (shmaddr, tmp_buf, PAGE_SIZE - 1);
         shmaddr [PAGE_SIZE - 1] = '\0';
+
         memset  (tmp_buf, '\0', PAGE_SIZE);
 
         PAUSE;
-    }
+
+        PRINT_STEP       (v_mutex, %p);
+        my_semop (id_sem, v_mutex, 1);
+
+        PRINT_STEP       (v_full, %p);
+        my_semop (id_sem, v_full , 1);
+    } 
+    while (num_symb > 0);
 
     free       (tmp_buf);
     my_close   (fd_file);

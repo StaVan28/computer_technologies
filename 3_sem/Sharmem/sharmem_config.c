@@ -137,4 +137,15 @@ char* create_tmp_buf (void)
     return tmp_buf;
 }
 
+//----------------------------
+
+void my_semop (int id_sem, struct sembuf *sops, unsigned nsops)
+{
+    if (semop (id_sem, sops, nsops) < 0)
+    {
+        ERROR_INFO ("semop ()");
+        exit       (EXIT_FAILURE); 
+    }
+}
+
 //------------------------------------------------------------

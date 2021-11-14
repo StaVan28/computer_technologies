@@ -3,6 +3,7 @@
 
 //------------------------------------------------------------
 
+#define  _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -24,7 +25,38 @@
 
 //! Semaphores
 
-static const int NUM_SEM = 3;
+static const int NUM_SEM = 5;
+
+enum SEM
+{
+    MUTEX,
+    FULL,
+    EMPTY,
+    SYNC_RD,
+    SYNC_WR
+};
+
+static struct sembuf init[3] = {
+    {MUTEX,    1, 0},
+    {EMPTY,    1, 0},
+    {SYNC_WR,  1, SEM_UNDO}
+};
+
+static struct sembuf sync_write[2] = {
+    {SYNC_RD,  1, SEM_UNDO},
+    {SYNC_WR, -1, SEM_UNDO}
+};
+
+static struct sembuf sync_read[1] = {
+    {SYNC_RD, -1, SEM_UNDO}
+};
+
+static struct sembuf p_empty[1] = {EMPTY, -1, 0};
+static struct sembuf v_empty[1] = {EMPTY,  1, 0};
+static struct sembuf p_full [1] = {FULL , -1, 0};
+static struct sembuf v_full [1] = {FULL,   1, 0};
+static struct sembuf p_mutex[1] = {MUTEX, -1, SEM_UNDO};
+static struct sembuf v_mutex[1] = {MUTEX,  1, SEM_UNDO};
 
 //
 
@@ -50,6 +82,8 @@ void  unlink_shm (char* shmaddr);
 
 
 char* create_tmp_buf (void);
+
+void my_semop (int semid, struct sembuf *sops, unsigned nsops);
 
 //------------------------------------------------------------
 
