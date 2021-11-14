@@ -12,15 +12,29 @@ void writer (const char* file_path)
     int   fd_file = my_open        (file_path);
     char* tmp_buf = create_tmp_buf ();
 
-    while (true)
+    DBG_PRINT ("\nstart cycle\n");
+    int indx = 1;
+
+    int    num_symb = 1;
+    while (num_symb > 0)
     {
-        break;
+        PRINT_STEP (indx, %d);
+        indx++;
+
+        if ((num_symb = read (fd_file, tmp_buf, PAGE_SIZE - 1)) < 0)
+        {
+            ERROR_INFO ("read ()");
+            exit       (EXIT_FAILURE);
+        }
+
+        PRINT_STEP (num_symb, %d);
+
+        memcpy  (shmaddr, tmp_buf, PAGE_SIZE - 1);
+        shmaddr [PAGE_SIZE - 1] = '\0';
+        memset  (tmp_buf, '\0', PAGE_SIZE);
+
+        PAUSE;
     }
-
-    // print in
-    strncpy (shmaddr, "hello", PAGE_SIZE);
-
-    PAUSE;
 
     free       (tmp_buf);
     my_close   (fd_file);
@@ -39,7 +53,7 @@ int my_open (const char* file_path)
 
     int  fd_file = -1;
     if ((fd_file = open (file_path, O_RDONLY)) < 0)
-    {
+    {     
         ERROR_INFO ("open ()");
         exit       (EXIT_FAILURE);
     }
@@ -61,17 +75,3 @@ void my_close (int fd_file)
 }
 
 //---------------------------------------------------------------------
-
-char* create_tmp_buf (void)
-{
-    DBG_PRINT ("\ncreate_tmp_buf ()\n");
-
-    char* tmp_buf = NULL;
-    if  ((tmp_buf = (char*) calloc (1, PAGE_SIZE)) == NULL)
-    {
-        ERROR_INFO ("calloc ()");
-        exit       (EXIT_FAILURE);
-    }
-
-    return tmp_buf;
-}

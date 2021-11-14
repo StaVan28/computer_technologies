@@ -24,7 +24,7 @@
 
 //! Semaphores
 
-static const int NUM_SEM = 2;
+static const int NUM_SEM = 3;
 
 //
 
@@ -47,6 +47,9 @@ void  delete_shm (int id_shm);
 char*   link_shm (int id_shm);
 
 void  unlink_shm (char* shmaddr);
+
+
+char* create_tmp_buf (void);
 
 //------------------------------------------------------------
 

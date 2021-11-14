@@ -40,6 +40,8 @@ void delete_shm (int id_shm)
         ERROR_INFO ("shmctl ()");
         exit       (EXIT_FAILURE);
     }
+
+    errno = 0;
 }
 
 //---------------------------
@@ -81,7 +83,9 @@ void delete_sem (int id_sem)
     {
         ERROR_INFO ("semctl ()");
         exit       (EXIT_FAILURE);
-    }    
+    }
+
+    errno = 0;
 }
 
 //---------------------------
@@ -115,6 +119,22 @@ void unlink_shm (char* shmaddr)
         ERROR_INFO ("shmdt ()");
         exit       (EXIT_FAILURE);        
     }
+}
+
+//----------------------------
+
+char* create_tmp_buf (void)
+{
+    DBG_PRINT ("\ncreate_tmp_buf ()\n");
+
+    char* tmp_buf = NULL;
+    if  ((tmp_buf = (char*) calloc (1, PAGE_SIZE)) == NULL)
+    {
+        ERROR_INFO ("calloc ()");
+        exit       (EXIT_FAILURE);
+    }
+
+    return tmp_buf;
 }
 
 //------------------------------------------------------------
