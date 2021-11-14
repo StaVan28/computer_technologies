@@ -35,8 +35,6 @@ void reader (void)
         int ret_fprintf = fprintf (stdout, "%s", tmp_buf);
         fflush  (stdout);
 
-        PAUSE;
-
         PRINT_STEP       (v_mutex, %p);
         my_semop (id_sem, v_mutex, 1);
 

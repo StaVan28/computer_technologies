@@ -44,8 +44,6 @@ void writer (const char* file_path)
 
         memset  (tmp_buf, '\0', PAGE_SIZE);
 
-        PAUSE;
-
         PRINT_STEP       (v_mutex, %p);
         my_semop (id_sem, v_mutex, 1);
 
