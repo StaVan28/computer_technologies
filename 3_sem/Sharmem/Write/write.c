@@ -31,7 +31,7 @@ void writer (const char* file_path)
         PRINT_STEP       (p_mutex, %p);
         my_semop (id_sem, p_mutex, 1);
 
-        if ((num_symb = read (fd_file, tmp_buf, PAGE_SIZE - 1)) < 0)
+        if ((num_symb = read (fd_file, tmp_buf, PAGE_SIZE - sizeof (size_t*))) < 0)
         {
             ERROR_INFO ("read ()");
             exit       (EXIT_FAILURE);
@@ -39,16 +39,16 @@ void writer (const char* file_path)
 
         PRINT_STEP (num_symb, %d);
 
-        memcpy  (shmaddr, tmp_buf, PAGE_SIZE - 1);
-        shmaddr [PAGE_SIZE - 1] = '\0';
+        memcpy (shmaddr + sizeof (size_t*), tmp_buf , PAGE_SIZE - sizeof (size_t*));
+        *(size_t*) shmaddr = num_symb;
 
-        memset  (tmp_buf, '\0', PAGE_SIZE);
+        memset (tmp_buf, '\0', PAGE_SIZE);
 
         PRINT_STEP       (v_mutex, %p);
         my_semop (id_sem, v_mutex, 1);
 
         PRINT_STEP       (v_full, %p);
-        my_semop (id_sem, v_full , 1);
+        my_semop (id_sem, v_full, 1);
     } 
     while (num_symb > 0);
 
