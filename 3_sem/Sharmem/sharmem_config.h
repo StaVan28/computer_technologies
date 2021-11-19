@@ -25,7 +25,7 @@
 
 //! Semaphores
 
-static const int NUM_SEM = 5;
+static const int NUM_SEM = 6;
 
 enum SEM
 {
@@ -33,32 +33,25 @@ enum SEM
     FULL,
     EMPTY,
     SYNC_RD,
-    SYNC_WR
+    SYNC_WR,
+    END
 };
 
-static struct sembuf init[3] = {
-    {MUTEX,    1, SEM_UNDO},
-    {EMPTY,    1, SEM_UNDO},
-    {SYNC_RD,  1, SEM_UNDO}
-};
+//! inits
+static struct sembuf init_mutex[1] = {MUTEX,    1, SEM_UNDO};
+static struct sembuf init_empty[1] = {EMPTY,    1, SEM_UNDO};
+static struct sembuf init_write[1] = {SYNC_RD,  1, SEM_UNDO};
+static struct sembuf init_read [1] = {SYNC_WR,  1, SEM_UNDO};
+static struct sembuf sync_read [1] = {SYNC_RD, -1, SEM_UNDO};
+static struct sembuf sync_write[1] = {SYNC_WR, -1, SEM_UNDO};
 
-static struct sembuf sync_read[2] = {
-    {SYNC_WR,  1, SEM_UNDO},
-    {SYNC_RD, -1, SEM_UNDO}
-};
-
-static struct sembuf sync_write[1] = {
-    {SYNC_WR, -1, SEM_UNDO}
-};
-
-static struct sembuf p_empty[1] = {EMPTY, -1, 0};
-static struct sembuf v_empty[1] = {EMPTY,  1, 0};
-static struct sembuf p_full [1] = {FULL , -1, 0};
-static struct sembuf v_full [1] = {FULL,   1, 0};
-static struct sembuf p_mutex[1] = {MUTEX, -1, SEM_UNDO};
-static struct sembuf v_mutex[1] = {MUTEX,  1, SEM_UNDO};
-
-//
+//! send/get data
+static struct sembuf    p_empty[1] = {EMPTY, -1, SEM_UNDO};
+static struct sembuf    v_empty[1] = {EMPTY,  1, SEM_UNDO};
+static struct sembuf    p_full [1] = {FULL , -1, SEM_UNDO};
+static struct sembuf    v_full [1] = {FULL,   1, SEM_UNDO};
+static struct sembuf    p_mutex[1] = {MUTEX, -1, SEM_UNDO};
+static struct sembuf    v_mutex[1] = {MUTEX,  1, SEM_UNDO};
 
 static const int    DFLT_FTOK_SEED = 28;
 static const char*  DFLT_FTOK_PATH = "../test.txt";

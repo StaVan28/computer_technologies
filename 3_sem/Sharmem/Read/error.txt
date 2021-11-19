@@ -1,0 +1,1651 @@
+
+create_sem()
+
+  Get key > key = {470156081}
+  Get id_sem > id_sem = {36}
+
+create_shm()
+
+  Get key > key = {470156081}
+  Get id_shm > id_shm = {51}
+
+link_shm()
+
+  Get shmaddr > shmaddr = {0x7f1274b4b000}
+
+start cycle
+
+  Get indx > indx = {1}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {2}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {3}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {4}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {5}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {6}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {7}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {8}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {9}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {10}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {11}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {12}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {13}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {14}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {15}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {16}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {17}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {18}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {19}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {20}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {21}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {22}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {23}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {24}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {25}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {26}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {27}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {28}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {29}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {30}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {31}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {32}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {33}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {34}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {35}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {36}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {37}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {38}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {39}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {40}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {41}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {42}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {43}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {44}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {45}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {46}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {47}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {48}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {49}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {50}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {51}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {52}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {53}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {54}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {55}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {56}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {57}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {58}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {59}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {60}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {61}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {62}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {63}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {64}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {65}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {66}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {67}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {68}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {69}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {70}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {71}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {72}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {73}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {74}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {75}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {76}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {77}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {78}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {79}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {80}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {81}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {82}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {83}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {84}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {85}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {86}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {87}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {88}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {89}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {90}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {91}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {92}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {93}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {94}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {95}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {96}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {97}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {98}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {99}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {100}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {101}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {102}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {103}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {104}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {105}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {106}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {107}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {108}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {109}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {110}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {111}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {112}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {113}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {114}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {115}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {116}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {117}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {118}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {119}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {120}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {121}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {122}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {123}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {124}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {125}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {126}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {127}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {128}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {129}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {130}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {131}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {132}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {133}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {134}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {135}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {136}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {137}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {138}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {139}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {140}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {141}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {142}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {143}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {144}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {145}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {146}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {147}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {148}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {149}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {150}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {151}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {152}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {153}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {154}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {155}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {156}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {157}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {158}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {159}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {160}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {161}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {162}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {163}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {164}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {165}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {166}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {167}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {168}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {169}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {170}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {171}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {172}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {173}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {174}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {175}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {176}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {177}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {178}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {179}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {180}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {181}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {182}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {183}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {184}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {185}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {186}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {187}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {188}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {189}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {190}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {191}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {192}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {193}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {194}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {195}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {196}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {197}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {198}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {199}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {200}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {201}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {202}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {203}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {204}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {205}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {206}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {207}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {208}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {209}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {210}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {211}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {212}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {213}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {214}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {215}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {216}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {217}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {218}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {219}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {220}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {221}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {222}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {223}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {224}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {225}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {226}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {227}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {228}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {229}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {230}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {231}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {4088}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {232}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {208}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+  Get indx > indx = {233}
+  Get p_full > p_full = {0x5589da22d0b4}
+  Get p_mutex > p_mutex = {0x5589da22d0ae}
+  Get num_symb > num_symb = {0}
+  Get v_mutex > v_mutex = {0x5589da22d0a8}
+  Get v_empty > v_empty = {0x5589da22d0ba}
+
+delete_shm()
+
+  Get shmaddr > shmaddr = {0x7f1274b4b000}
