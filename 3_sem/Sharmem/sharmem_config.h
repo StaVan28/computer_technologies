@@ -39,16 +39,16 @@ enum SEM
 static struct sembuf init[3] = {
     {MUTEX,    1, SEM_UNDO},
     {EMPTY,    1, SEM_UNDO},
-    {SYNC_WR,  1, SEM_UNDO}
+    {SYNC_RD,  1, SEM_UNDO}
 };
 
-static struct sembuf sync_write[2] = {
-    {SYNC_RD,  1, SEM_UNDO},
-    {SYNC_WR, -1, SEM_UNDO}
-};
-
-static struct sembuf sync_read[1] = {
+static struct sembuf sync_read[2] = {
+    {SYNC_WR,  1, SEM_UNDO},
     {SYNC_RD, -1, SEM_UNDO}
+};
+
+static struct sembuf sync_write[1] = {
+    {SYNC_WR, -1, SEM_UNDO}
 };
 
 static struct sembuf p_empty[1] = {EMPTY, -1, 0};

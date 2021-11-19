@@ -3,7 +3,7 @@
 
 //------------------------------------------------------------
 
-#define DEBUG 0
+#define DEBUG 1
 
 #define ERROR_INFO(err_str)                                      \
         if (DEBUG)                                               \
