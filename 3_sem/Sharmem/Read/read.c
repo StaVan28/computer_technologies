@@ -18,9 +18,9 @@ void reader (void)
     int num_symb = -1;
     do
     {
-        fprintf    (stderr, "\n");
+        DBG_PRINT  ("\n");
         PRINT_STEP (indx, %d);
-        indx++;      
+        indx++;
 
         PRINT_STEP       (p_full, %p);
         my_semop (id_sem, p_full , 1);

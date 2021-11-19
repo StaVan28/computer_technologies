@@ -21,7 +21,7 @@ void writer (const char* file_path)
     int num_symb = -1;
     do
     {
-        fprintf    (stderr, "\n");
+        DBG_PRINT  ("\n");
         PRINT_STEP (indx, %d);
         indx++;
 
