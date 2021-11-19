@@ -12,9 +12,7 @@ void writer (const char* file_path)
     char* tmp_buf = create_tmp_buf ();
 
     my_semop (id_sem, init_write, 1);
-    my_semop (id_sem, sync_write, 1);
-
-    my_semop (id_sem, init_mutex, 1);
+    my_semop (id_sem, sync_read,  2);
 
     int fd_file = my_open (file_path);
 

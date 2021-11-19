@@ -10,10 +10,8 @@ void reader (void)
     char* shmaddr =   link_shm (id_shm);
 
     my_semop (id_sem, init_read , 1);
-    my_semop (id_sem, sync_read , 1);
+    my_semop (id_sem, sync_write, 2);
 
-    my_semop (id_sem, init_empty, 1);
-    
     DBG_PRINT ("\nstart cycle\n");
     int indx = 1;
 

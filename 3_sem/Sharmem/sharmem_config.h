@@ -38,12 +38,18 @@ enum SEM
 };
 
 //! inits
-static struct sembuf init_mutex[1] = {MUTEX,    1, SEM_UNDO};
-static struct sembuf init_empty[1] = {EMPTY,    1, SEM_UNDO};
 static struct sembuf init_write[1] = {SYNC_RD,  1, SEM_UNDO};
 static struct sembuf init_read [1] = {SYNC_WR,  1, SEM_UNDO};
-static struct sembuf sync_read [1] = {SYNC_RD, -1, SEM_UNDO};
-static struct sembuf sync_write[1] = {SYNC_WR, -1, SEM_UNDO};
+
+static struct sembuf sync_write[2] = {
+    {SYNC_RD, -1, SEM_UNDO},
+    {EMPTY,    1, SEM_UNDO}
+};
+
+static struct sembuf sync_read [2] = {
+    {SYNC_WR, -1, SEM_UNDO},
+    {MUTEX,    1, SEM_UNDO}
+};
 
 //! send/get data
 static struct sembuf    p_empty[1] = {EMPTY, -1, SEM_UNDO};
