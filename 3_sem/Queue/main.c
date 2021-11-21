@@ -24,7 +24,7 @@ int main (int argc, const char *argv[])
     }
     else
     {
-        recv_msg (id, i_proc);
+        struct my_msg get_msg = recv_msg (id, i_proc);
 
         printf ("Child proc = %ld\n", i_proc);
         fflush (stdout);

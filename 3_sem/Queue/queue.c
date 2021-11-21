@@ -74,7 +74,7 @@ void send_msg (int id, long type)
 
 //------------------------------------------------------------
 
-void recv_msg (int id, long type)
+struct my_msg* recv_msg (int id, long type)
 {
     struct my_msg get_msg = {};
 
@@ -85,4 +85,6 @@ void recv_msg (int id, long type)
         perror ("ERROR! msgrcv ()");
         exit   (EXIT_FAILURE);
     }
+
+    return &get_msg;
 }

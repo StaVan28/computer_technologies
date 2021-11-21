@@ -9,20 +9,20 @@ void write_fifo (const char* file_path)
     pid_t       secr_pid  = get_pid_fifo (dflt_fifo);
     const char* secr_name = create_name  (secr_pid);
     
-    int  secr_fifo = 0;    
+    int  secr_fifo = 0;
     if ((secr_fifo = open (secr_name, O_WRONLY | O_NONBLOCK)) < 0)
     {
         perror ("ERROR! Smth error with open()_1\n");
-        exit   (EXIT_FAILURE);     
+        exit   (EXIT_FAILURE);
     }
 
     if (fcntl (secr_fifo, F_SETFL, O_WRONLY) < 0)
     {
         perror ("ERROR! Smth wrong with fcntl()!\n");
-        exit   (EXIT_FAILURE);        
+        exit   (EXIT_FAILURE);
     }
 
-    int  rd_file = 0;    
+    int  rd_file = 0;
     if ((rd_file = open (file_path, O_RDONLY)) < 0)
     {
         perror ("ERROR! Smth error with open()\n");

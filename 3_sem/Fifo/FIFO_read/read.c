@@ -16,7 +16,7 @@ void read_fifo (void)
     if (fcntl (secr_fifo, F_SETFL, O_RDONLY) < 0)
     {
         perror ("ERROR! Smth wrong with fcntl()!\n");
-        exit   (EXIT_FAILURE);        
+        exit   (EXIT_FAILURE);
     }
 
     int dflt_fifo = synchr_fifo (DFLT_FIFO_PATH, O_WRONLY);
@@ -26,10 +26,12 @@ void read_fifo (void)
     if (!is_can_read_fifo (secr_fifo))
     {
         perror ("ERROR! Time out!\n");
-        exit   (EXIT_FAILURE);  
+        exit   (EXIT_FAILURE);
     }
 
     data_writing_fifo (secr_fifo, STDOUT_FILENO);
+
+    getchar();
 
     close (secr_fifo);
     close (dflt_fifo);
@@ -42,7 +44,7 @@ void transfer_pid_fifo (int dflt_fifo, pid_t secr_pid)
     if (write (dflt_fifo, &secr_pid, sizeof (pid_t)) < 0)
     {
         perror ("ERROR! Something wrong with write()\n");
-        exit   (EXIT_FAILURE);        
+        exit   (EXIT_FAILURE);
     }
 }
 

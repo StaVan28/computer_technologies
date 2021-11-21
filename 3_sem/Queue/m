@@ -1,0 +1,8 @@
+#! /bin/bash
+
+echo "START"
+
+./queue 8000 > out.txt
+diff ./out.txt ./test.txt
+
+echo "END" 
