@@ -11,8 +11,18 @@ void writer (const char* file_path)
 
     char* tmp_buf = create_tmp_buf ();
 
+    struct sembuf alone_wr[2] = {
+        {ALONE_WR,  0, 0},
+        {ALONE_WR,  1, SEM_UNDO}
+    };
+
+    my_semop (id_sem, alone_wr, 2);
+
+    struct sembuf init_write[1] = {SYNC_RD,  1, SEM_UNDO};
+    struct sembuf sync_read [1] = {SYNC_WR, -1, SEM_UNDO};
+
     my_semop (id_sem, init_write, 1);
-    my_semop (id_sem, sync_read , 2);
+    my_semop (id_sem, sync_read , 1);
 
     int fd_file = my_open (file_path);
 

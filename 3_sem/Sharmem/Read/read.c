@@ -9,8 +9,22 @@ void reader (void)
     int   id_shm  = create_shm ();
     char* shmaddr =   link_shm (id_shm);
 
+    struct sembuf alone_rd[2] = {
+        {ALONE_RD,  0, 0},
+        {ALONE_RD,  1, SEM_UNDO}
+    };
+
+    my_semop (id_sem, alone_rd, 2);
+
+    struct sembuf init_read [1] = {SYNC_WR,  1, SEM_UNDO};
+    struct sembuf sync_write[3] = {
+        {SYNC_RD, -1, SEM_UNDO},
+        {EMPTY,    1, SEM_UNDO},
+        {MUTEX,    1, SEM_UNDO}
+    };
+
     my_semop (id_sem, init_read , 1);
-    my_semop (id_sem, sync_write, 2);
+    my_semop (id_sem, sync_write, 3);
 
     DBG_PRINT ("\nstart cycle\n");
     int indx = 1;
@@ -51,3 +65,6 @@ void reader (void)
 }
 
 //---------------------------------------------------------------------
+
+// крит секции
+// борется ридер с врайтером за share memory 
