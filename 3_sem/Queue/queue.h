@@ -20,15 +20,15 @@ struct my_msg
 
 //!
 
-int            create_msg   (void);
+int  create_msg   (void);
 
-void           delete_msg   (int id);
+void delete_msg   (int id);
 
-void           send_msg     (int id, long type);
+void send_msg     (int id, long type);
 
-struct my_msg* recv_msg     (int id, long type);
+void recv_msg     (int id, long type, struct my_msg* get_msg);
 
-void           create_procs (int* i_proc, int num_proc);
+void create_procs (int* i_proc, int num_proc);
 
 //--------------------------------------------
 

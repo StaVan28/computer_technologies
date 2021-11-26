@@ -13,18 +13,20 @@ int main (int argc, const char *argv[])
 
     create_procs (&i_proc, num_proc);
 
+    struct my_msg get_msg = {0};
+
     if (signal == getpid())
     {
         for (int i = 1; i < num_proc + 1; i++)
         {
             send_msg (id, i);
 
-            recv_msg (id, num_proc + 1);
+            recv_msg (id, num_proc + 1, &get_msg);
         }
     }
     else
     {
-        struct my_msg get_msg = recv_msg (id, i_proc);
+        recv_msg (id, i_proc, &get_msg);
 
         printf ("Child proc = %ld\n", i_proc);
         fflush (stdout);

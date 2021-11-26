@@ -74,17 +74,13 @@ void send_msg (int id, long type)
 
 //------------------------------------------------------------
 
-struct my_msg* recv_msg (int id, long type)
+void recv_msg (int id, long type, struct my_msg* get_msg)
 {
-    struct my_msg get_msg = {};
-
-    if (msgrcv (id, &get_msg, sizeof (long), type, 0) < 0)
+    if (msgrcv (id, get_msg, sizeof (long), type, 0) < 0)
     {
         delete_msg (id);
 
         perror ("ERROR! msgrcv ()");
         exit   (EXIT_FAILURE);
     }
-
-    return &get_msg;
-}
+ }
