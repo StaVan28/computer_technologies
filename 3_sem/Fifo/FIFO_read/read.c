@@ -31,8 +31,6 @@ void read_fifo (void)
 
     data_writing_fifo (secr_fifo, STDOUT_FILENO);
 
-    getchar();
-
     close (secr_fifo);
     close (dflt_fifo);
 }
