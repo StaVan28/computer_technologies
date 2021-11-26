@@ -39,12 +39,12 @@ enum SEM
 };
 
 //! send/get data
-static struct sembuf    p_empty[1] = {EMPTY, -1, SEM_UNDO};
-static struct sembuf    v_empty[1] = {EMPTY,  1, SEM_UNDO};
-static struct sembuf    p_full [1] = {FULL , -1, SEM_UNDO};
-static struct sembuf    v_full [1] = {FULL,   1, SEM_UNDO};
-static struct sembuf    p_mutex[1] = {MUTEX, -1, SEM_UNDO};
-static struct sembuf    v_mutex[1] = {MUTEX,  1, SEM_UNDO};
+static struct sembuf p_empty[1] = {EMPTY, -1, SEM_UNDO};
+static struct sembuf v_empty[1] = {EMPTY,  1, SEM_UNDO};
+static struct sembuf p_full [1] = {FULL , -1, SEM_UNDO};
+static struct sembuf v_full [1] = {FULL,   1, SEM_UNDO};
+static struct sembuf p_mutex[1] = {MUTEX, -1, SEM_UNDO};
+static struct sembuf v_mutex[1] = {MUTEX,  1, SEM_UNDO};
 
 //!
 
