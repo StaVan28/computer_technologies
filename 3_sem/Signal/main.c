@@ -53,7 +53,7 @@ int main (int argc, const char *argv[])
         ERROR_INFO  ("sigprocmask () ");
 
     char cur_letter = 0;
-    char mask       = 0x01;
+    char mask       = 0b1;
     char bit        = 0;
 
     pid_t prnt_pid = getpid ();
@@ -67,7 +67,7 @@ int main (int argc, const char *argv[])
         {
             for (int i = 0; i < 8; i++)
             {
-                mask = 0x01 << i;
+                mask = 0b1 << i;
 
                 errno = 0;
                 sigsuspend (&old);
@@ -89,7 +89,7 @@ int main (int argc, const char *argv[])
             if (write (STDOUT_FILENO, &cur_letter, 1) < 0)
                 ERROR_INFO ("write ()");
 
-            mask       = 0x01;
+            mask       = 0b1;
             cur_letter = 0;
         }
 
@@ -121,7 +121,7 @@ int main (int argc, const char *argv[])
 
             for (int i = 0; i < 8; i++)
             {
-                mask = 0x01 << i;
+                mask = 0b1 << i;
                 bit  = mask & cur_letter;
 
                 if (bit == 0)
@@ -134,14 +134,14 @@ int main (int argc, const char *argv[])
                     if (kill (prnt_pid, SIGUSR2) < 0)
                         ERROR_INFO ("kill () ");
                 }
-                    
+
                 errno = 0;
                 sigsuspend (&old);
                 if (errno != EINTR)
                     ERROR_INFO ("sigsuspend () ");
             }
 
-            mask       = 0x01;
+            mask       = 0b1;
             bit        = 0;
             cur_letter = 0;
         }
