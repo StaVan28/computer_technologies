@@ -24,7 +24,7 @@ int  create_msg   (void);
 
 void delete_msg   (int id);
 
-void send_msg     (int id, long type);
+void send_msg     (int id, long type, struct my_msg* snd_msg);
 
 void recv_msg     (int id, long type, struct my_msg* get_msg);
 

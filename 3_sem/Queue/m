@@ -2,7 +2,7 @@
 
 echo "START"
 
-./queue 8000 > out.txt
-diff ./out.txt ./test.txt
+./select 28 test.txt > out.txt
+diff out.txt test.txt
 
 echo "END" 
