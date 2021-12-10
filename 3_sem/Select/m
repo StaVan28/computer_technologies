@@ -2,6 +2,6 @@
 
 echo "START"
 
-./select 2 test.txt
+./select 1 test.txt
 
 echo "END"

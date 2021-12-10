@@ -21,8 +21,8 @@ E = $(Q) echo
 
 # source
 BIN = select
-HDR = select.h        config.h debug.h
-SRC = select.c main.c config.c
+HDR =        config.h debug.h
+SRC = main.c config.c
 OBJ = $(SRC:%.c=%.o)
 
 # compiler settings
@@ -58,9 +58,8 @@ $(BIN): $(OBJ)
 	$(E) "    C:           " $@
 	$(Q) ${CXX} -c ${CXXFLAGS} $(addprefix -I,../) $< -o $@
 
-main.o:      main.c  select.h config.h
-config.o:  config.c           config.h
-select.o:  select.c  select.h config.h debug.h
+main.o:      main.c config.h debug.h
+config.o:  config.c config.h
 
 #
 ## debug
