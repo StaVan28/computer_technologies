@@ -1,0 +1,11 @@
+#! /bin/bash
+
+clear
+echo "----------------------------------------------------------------------------------------------"
+
+make
+./signals test1.txt > out.txt
+
+echo "diff"
+diff test1.txt out.txt
+
