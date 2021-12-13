@@ -7,12 +7,12 @@ void writer (const char* file_path)
     int   id_sem  = create_sem ();
 
     int   id_shm  = create_shm ();
-    char* shmaddr =   link_shm (id_shm); 
+    char* shmaddr =   link_shm (id_shm);
 
     char* tmp_buf = create_tmp_buf ();
 
     struct sembuf alone_wr[2] = {
-        {ALONE_WR,  0, 0},
+        {ALONE_WR,  0, 0       },
         {ALONE_WR,  1, SEM_UNDO}
     };
     if (semop (id_sem, alone_wr, 2) < 0)
@@ -30,20 +30,28 @@ void writer (const char* file_path)
         exit       (EXIT_FAILURE); 
     }
 
-    struct sembuf sync_read_v[1] = {
-        {SYNC_RD,  1, 0}
-    };
-    if (semop (id_sem, sync_read_v, 1) < 0)
+    if (semctl (id_sem, FULL, SETVAL, 0) < 0)
     {
         ERROR_INFO ("semop ()");
         exit       (EXIT_FAILURE); 
     }
 
-    struct sembuf sync_write[2] = {
-        {SYNC_WR,  -1, 0},
-        {NUM_PROC,  1, SEM_UNDO}
+    struct sembuf sync_read[1] = {
+        {SYNC_RD,  1, 0}
     };
-    if (semop (id_sem, sync_write, 2) < 0)
+    if (semop (id_sem, sync_read, 1) < 0)
+    {
+        ERROR_INFO ("semop ()");
+        exit       (EXIT_FAILURE); 
+    }
+
+    struct sembuf sync_write[4] = {
+        {SYNC_WR,  -1, 0       },
+        {NUM_PROC,  1, SEM_UNDO},
+        {FULL,      1, 0       },
+        {FULL,     -1, SEM_UNDO}
+    };
+    if (semop (id_sem, sync_write, 4) < 0)
     {
         ERROR_INFO ("semop ()");
         exit       (EXIT_FAILURE); 
@@ -77,7 +85,7 @@ void writer (const char* file_path)
 
         struct sembuf check_num_proc[2] = {
             {NUM_PROC, -2, IPC_NOWAIT},
-            {NUM_PROC,  2, 0},
+            {NUM_PROC,  2, 0         }
         };
         if (semop (id_sem, check_num_proc, 2) < 0)
         {
@@ -116,11 +124,13 @@ void writer (const char* file_path)
         exit       (EXIT_FAILURE);
     }
 
-    struct sembuf end_wr[3] = {
+    struct sembuf end_wr[4] = {
+        {FULL,      1, SEM_UNDO},
+        {FULL,     -1, 0       },
         {NUM_PROC, -1, SEM_UNDO},
         {ALONE_WR, -1, SEM_UNDO}
     };
-    if (semop (id_sem, check_num_proc, 3) < 0)
+    if (semop (id_sem, end_wr, 4) < 0)
     {
         ERROR_INFO ("semop ()");
         exit       (EXIT_FAILURE);     

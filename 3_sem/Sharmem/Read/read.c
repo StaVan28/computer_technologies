@@ -10,7 +10,7 @@ void reader (void)
     char* shmaddr =   link_shm (id_shm);
 
     struct sembuf alone_rd[2] = {
-        {ALONE_RD,  0, 0},
+        {ALONE_RD,  0, 0       },
         {ALONE_RD,  1, SEM_UNDO}
     };
     if (semop (id_sem, alone_rd, 2) < 0)
@@ -25,20 +25,26 @@ void reader (void)
     if (semop (id_sem, check_num_proc, 1) < 0)
     {
         ERROR_INFO ("semop ()");
-        exit       (EXIT_FAILURE); 
+        exit       (EXIT_FAILURE);
     }
 
-    struct sembuf sync_write_v[1] = {
+    if (semctl (id_sem, EMPTY, SETVAL, 0) < 0)
+    {
+        ERROR_INFO ("semop ()");
+        exit       (EXIT_FAILURE);
+    }
+
+    struct sembuf sync_write[1] = {
         {SYNC_WR,  1, 0}
     };
-    if (semop (id_sem, sync_write_v, 1) < 0)
+    if (semop (id_sem, sync_write, 1) < 0)
     {
         ERROR_INFO ("semop ()");
         exit       (EXIT_FAILURE); 
     }
 
     struct sembuf sync_read[3] = {
-        {SYNC_RD, -1, 0},
+        {SYNC_RD, -1, 0       },
         {EMPTY,    1, SEM_UNDO},
         {NUM_PROC, 1, SEM_UNDO}
     };
@@ -50,10 +56,6 @@ void reader (void)
 
     DBG_PRINT ("\nstart cycle\n");
     int indx = 1;
-
-    struct timespec timeout;
-    timeout.tv_sec  = 3;
-    timeout.tv_nsec = 0;
     
     int num_symb = -1;
     do
@@ -65,7 +67,7 @@ void reader (void)
         struct sembuf p_full[1] = {
             {FULL, -1, 0}
         };
-        if (semtimedop (id_sem, p_full, 1, &timeout) < 0)
+        if (semop (id_sem, p_full, 1) < 0)
         {
             ERROR_INFO ("semop ()");
             exit       (EXIT_FAILURE); 
@@ -73,12 +75,12 @@ void reader (void)
 
         struct sembuf check_num_proc[2] = {
             {NUM_PROC, -2, IPC_NOWAIT},
-            {NUM_PROC,  2, 0},
+            {NUM_PROC,  2, 0         }
         };
         if (semop (id_sem, check_num_proc, 2) < 0)
         {
             ERROR_INFO ("semop ()");
-            exit       (EXIT_FAILURE);     
+            exit       (EXIT_FAILURE);
         }
 
         num_symb = *(size_t*) shmaddr;
@@ -109,7 +111,7 @@ void reader (void)
         {EMPTY,    -1, SEM_UNDO},
         {ALONE_RD, -1, SEM_UNDO}
     };
-    if (semop (id_sem, check_num_proc, 3) < 0 && errno != EINVAL)
+    if (semop (id_sem, end_rd, 3) < 0 && errno != EINVAL)
     {
         ERROR_INFO ("semop ()");
         exit       (EXIT_FAILURE);     
@@ -121,5 +123,3 @@ void reader (void)
 }
 
 //---------------------------------------------------------------------
-
-//

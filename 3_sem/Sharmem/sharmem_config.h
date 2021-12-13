@@ -26,7 +26,7 @@
 
 //! Semaphores
 
-static const int NUM_SEM = 8;
+static const int NUM_SEM = 7;
 
 enum SEM
 {
@@ -36,6 +36,7 @@ enum SEM
     SYNC_WR,
     ALONE_RD,
     ALONE_WR,
+    NUM_PROC
 };
 
 //!
