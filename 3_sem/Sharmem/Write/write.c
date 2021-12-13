@@ -21,10 +21,10 @@ void writer (const char* file_path)
         exit       (EXIT_FAILURE); 
     }
 
-    struct sembuf check_num_proc[1] = {
+    struct sembuf wait_prev_connect[1] = {
         {NUM_PROC,  0, 0}
     };
-    if (semop (id_sem, check_num_proc, 1) < 0)
+    if (semop (id_sem, wait_prev_connect, 1) < 0)
     {
         ERROR_INFO ("semop ()");
         exit       (EXIT_FAILURE); 

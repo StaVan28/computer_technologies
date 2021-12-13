@@ -19,16 +19,16 @@ void reader (void)
         exit       (EXIT_FAILURE); 
     }
 
-    struct sembuf check_num_proc[1] = {
+    struct sembuf wait_prev_connect[1] = {
         {NUM_PROC,  0, 0}
     };
-    if (semop (id_sem, check_num_proc, 1) < 0)
+    if (semop (id_sem, wait_prev_connect, 1) < 0)
     {
         ERROR_INFO ("semop ()");
         exit       (EXIT_FAILURE);
     }
 
-    if (semctl (id_sem, EMPTY, SETVAL, 0) < 0)
+    if (semctl (id_sem, EMPTY, SETVAL, 1) < 0)
     {
         ERROR_INFO ("semop ()");
         exit       (EXIT_FAILURE);
@@ -43,12 +43,13 @@ void reader (void)
         exit       (EXIT_FAILURE); 
     }
 
-    struct sembuf sync_read[3] = {
-        {SYNC_RD, -1, 0       },
-        {EMPTY,    1, SEM_UNDO},
-        {NUM_PROC, 1, SEM_UNDO}
+    struct sembuf sync_read[4] = {
+        {SYNC_RD,  -1, 0       },
+        {NUM_PROC,  1, SEM_UNDO},
+        {EMPTY,     1, 0       },
+        {EMPTY,    -1, SEM_UNDO}
     };
-    if (semop (id_sem, sync_read, 3) < 0)
+    if (semop (id_sem, sync_read, 4) < 0)
     {
         ERROR_INFO ("semop ()");
         exit       (EXIT_FAILURE); 
