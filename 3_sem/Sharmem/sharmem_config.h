@@ -3,6 +3,7 @@
 
 //------------------------------------------------------------
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,26 +26,17 @@
 
 //! Semaphores
 
-static const int NUM_SEM = 7;
+static const int NUM_SEM = 8;
 
 enum SEM
 {
-    MUTEX,
     FULL,
     EMPTY,
     SYNC_RD,
     SYNC_WR,
     ALONE_RD,
-    ALONE_WR
+    ALONE_WR,
 };
-
-//! send/get data
-static struct sembuf p_empty[1] = {EMPTY, -1, 0};
-static struct sembuf v_empty[1] = {EMPTY,  1, 0};
-static struct sembuf p_full [1] = {FULL , -1, 0};
-static struct sembuf v_full [1] = {FULL,   1, 0};
-static struct sembuf p_mutex[1] = {MUTEX, -1, SEM_UNDO};
-static struct sembuf v_mutex[1] = {MUTEX,  1, SEM_UNDO};
 
 //!
 
