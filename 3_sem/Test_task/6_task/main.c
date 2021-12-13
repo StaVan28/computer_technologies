@@ -58,8 +58,8 @@ int main(const int argc, char const *argv[])
 		if (num_symb < 0)
 		{
 			fprintf(stderr, "ERROR! Something wrong with read()\n");
-			exit(EXIT_FAILURE);		
-		}		
+			exit(EXIT_FAILURE);
+		}
 
 		exit(0);
 	}
