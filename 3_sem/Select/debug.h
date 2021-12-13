@@ -5,15 +5,20 @@
 
 #define DEBUG 1
 
-#define ERROR_INFO(err_str)                                      \
-        if (DEBUG)                                               \
-        {                                                        \
-                perror  (        "ERROR! " err_str);             \
-                fprintf (stderr, "errno = %d\n", errno);         \
-                                                                 \
-                fprintf (stderr, "file = {%s}, line = {%d}\n",   \
-                                  __FILE__,    __LINE__       ); \
-        }                                                        \
+#define ERROR_INFO(err_str)                                          \
+        do                                                           \
+        {                                                            \
+            if (DEBUG)                                               \
+            {                                                        \
+                    perror  (        "ERROR! " err_str);             \
+                    fprintf (stderr, "errno = %d\n", errno);         \
+                                                                     \
+                    fprintf (stderr, "file = {%s}, line = {%d}\n",   \
+                                      __FILE__,    __LINE__       ); \
+            }                                                        \
+                                                                     \
+            exit (EXIT_FAILURE);                                     \
+        } while (0)                                                  \
 
 //!
 

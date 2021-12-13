@@ -5,27 +5,35 @@
 
 typedef struct
 {
-    char* buf;
-    int   size_buf;
+    int fd_rd;
+    int fd_wr;
 
-    int   create_num;
+    char*     buf;
+    char* end_buf;
 
-    int   fd_in;
-    int   fd_out;
-} elem_connect;
+    char* cur_read;
+    char* cur_write;
+
+    int full;
+    int empty;
+} info_connect;
 
 //!
 
-struct connect_info
+typedef struct 
 {
-    int*  read_fds;
-    int* write_fds;
-};
+    int fd__to__prnt[2];
+    int fd_from_prnt[2];
+} info_elem;
 
 //!
 
-#define PARENT_STRUCT -1
-#define BUFF_SIZE     4096
+#define BUFF_SIZE 4096
+
+#define RD 0
+#define WR 1
+
+#define MIN(a, b) ((a) < (b)) ? (a) : (b)
 
 //!
 
@@ -54,340 +62,259 @@ int main(int argc, const char *argv[])
 
 void transfer_data (int num_proc, const char* file_name)
 {
-    DBG_PRINT ("\ntransfer_data ()\n\n");
+    info_elem* info_elems = (info_elem*) calloc (num_proc, sizeof (info_elem));
+    if        (info_elems == NULL)
+        ERROR_INFO ("calloc ()");
 
-    struct connect_info cnct_info = {0};
-
-    DBG_PRINT ("\nconnect_info construct\n");
-
-    PRINT_STEP (num_proc, %d);
-    
-    if ((cnct_info.read_fds  = (int*) calloc (num_proc, sizeof (int))) == NULL)
+    info_elem cur_elem = {};
+    for (int i_chld = 0; i_chld < num_proc; i_chld++)
     {
-        ERROR_INFO ("calloc (): read_fds");
-        exit       (EXIT_FAILURE);
-    }
-    PRINT_STEP (cnct_info.read_fds, %p);
+        if (pipe2 (cur_elem.fd__to__prnt, O_NONBLOCK) < 0)
+            ERROR_INFO ("pipe2() ");
 
-    if ((cnct_info.write_fds = (int*) calloc (num_proc, sizeof (int))) == NULL)
-    {
-        ERROR_INFO ("calloc (): write_fds");
-        exit       (EXIT_FAILURE);
-    }
-    PRINT_STEP (cnct_info.write_fds, %p);
+        if (pipe2 (cur_elem.fd_from_prnt, O_NONBLOCK) < 0)
+            ERROR_INFO ("pipe2() ");
 
-    int tmp_fd[2] = {};
-    for (int i = 0; i < num_proc; i++)
-    {
-        if (pipe2 (tmp_fd, O_NONBLOCK) < 0)
+        pid_t pid_prnt = getpid ();
+        pid_t pid_chld = fork   ();
+
+        if (pid_chld == 0) // child
         {
-            ERROR_INFO ("pipe() ");
-            exit       (EXIT_FAILURE);
-        }
-
-        cnct_info.read_fds[i]  = tmp_fd[0];
-        cnct_info.write_fds[i] = tmp_fd[1];
-    }
-
-    DBG_PRINT ("\n"); 
-
-    // alloc memory for structs
-    elem_connect* elem_cnct = NULL; 
-    if          ((elem_cnct = (elem_connect*) calloc (num_proc, sizeof (elem_connect))) == NULL)
-    {
-        ERROR_INFO ("calloc (): arr_cnct");
-        exit       (EXIT_FAILURE);
-    }
-    PRINT_STEP (elem_cnct, %p);
-
-    // open file
-    int  fd_file = -1;
-    if ((fd_file = open (file_name, O_RDONLY)) < 0)
-    {
-        ERROR_INFO ("open()");
-        exit       (EXIT_FAILURE);        
-    }
-    PRINT_STEP (fd_file, %d);
-    
-    // create childs
-    for (int i_proc = 0; i_proc < num_proc; i_proc++)
-    {
-        pid_t pid = fork ();
-
-        if (pid > 0) // parent
-        {
-            if (i_proc == num_proc - 1)
-                break;
-
-            int  dynam_size_buf = pow (3, 7 + i_proc);
-            int static_size_buf = 12800;
-
-            DBG_PRINT ("\n\nparent\n");
-
-            if (dynam_size_buf > static_size_buf)
-                elem_cnct->size_buf = static_size_buf;
-            else
-                elem_cnct->size_buf =  dynam_size_buf;
-
-            PRINT_STEP (elem_cnct->size_buf, %d);
-
-            if ((elem_cnct->buf = (char*) calloc (elem_cnct->size_buf, sizeof (char))) == NULL)
-            {
-                ERROR_INFO ("calloc ()");
-                exit       (EXIT_FAILURE);
-            }
-            PRINT_STEP (elem_cnct->buf, %p);
-
-            elem_cnct->create_num = i_proc;
-            PRINT_STEP (elem_cnct->create_num, %d);
-
-            elem_cnct->fd_in  = cnct_info.write_fds[i_proc];
-            elem_cnct->fd_out = cnct_info.read_fds[i_proc + 1];
-
-            PRINT_STEP (elem_cnct->fd_in,  %d);
-            PRINT_STEP (elem_cnct->fd_out, %d);
-
-            continue;
-        }
-        else if (pid == 0) // child
-        {
-            DBG_PRINT ("\n\nchild\n");
 
             if (prctl (PR_SET_PDEATHSIG, SIGTERM) < 0)
-            {
-                ERROR_INFO ("prctl ()");
-                exit       (EXIT_FAILURE);                
-            }
+                ERROR_INFO ("prctl () ");
+
+            if (pid_prnt != getppid ())
+                ERROR_INFO ("No parent no more... ");
+
+            free (info_elems);
+            info_elems = NULL;
+
+
+            if (close (cur_elem.fd_from_prnt[WR]) < 0) 
+                ERROR_INFO ("close ()");
+            cur_elem.fd_from_prnt[WR] = -1;
+
+            if (close (cur_elem.fd__to__prnt[RD]) < 0)
+                ERROR_INFO ("close ()");
+            cur_elem.fd__to__prnt[RD] = -1;
+
             
-            elem_cnct->size_buf = -1;
-            elem_cnct->buf      = NULL;
-            PRINT_STEP (elem_cnct->size_buf, %d);
+            int fd_rd = -1;
+            int fd_wr = -1;
 
-            elem_cnct->create_num = i_proc;
-            PRINT_STEP (elem_cnct->create_num, %d);
-
-            elem_cnct->fd_in  = cnct_info.read_fds[i_proc];
-            elem_cnct->fd_out = cnct_info.write_fds[i_proc];             
-            
-            if (fcntl (elem_cnct->fd_in, F_SETFL, O_RDONLY))
+            if (i_chld == 0)
             {
-                ERROR_INFO ("fcntl ()");
-                exit       (EXIT_FAILURE);        
-            }
-            
-            if (fcntl (elem_cnct->fd_out, F_SETFL, O_WRONLY))
-            {
-                ERROR_INFO ("fcntl ()");
-                exit       (EXIT_FAILURE);        
-            }
-
-            if (i_proc == 0)
-                elem_cnct->fd_in  = fd_file;
-            
-            if (i_proc == num_proc - 1)
-                elem_cnct->fd_out = STDOUT_FILENO;
-
-            PRINT_STEP (elem_cnct->fd_in,  %d);
-            PRINT_STEP (elem_cnct->fd_out, %d);
-
-            char  buff[BUFF_SIZE] = {};
-            int   num_symb   = 0;
-
-            while ((num_symb = read (elem_cnct->fd_in, buff, BUFF_SIZE)) > 0)
-            {
-                if (write (elem_cnct->fd_out, buff, num_symb) != num_symb)
+                if ((fd_rd = open (file_name, O_RDONLY)) < 0)
                 {
-                    ERROR_INFO ("ERROR! Something wrong with write()\n");
-                    exit       (EXIT_FAILURE);
+                    ERROR_INFO ("open ()");
                 }
             }
+            else
+            {
+                fd_rd = cur_elem.fd_from_prnt[RD];
+            }
+            
 
+            if (i_chld == num_proc)
+                fd_wr = STDOUT_FILENO;
+            else
+                fd_wr = cur_elem.fd__to__prnt[WR];
+
+            if (fcntl (fd_rd, F_SETFL, O_RDONLY))
+                ERROR_INFO ("fcntl ()");         
+
+            if (fcntl (fd_wr, F_SETFL, O_WRONLY))
+                ERROR_INFO ("fcntl ()");
+
+
+            char  buff[BUFF_SIZE] = {};
+            int   num_symb        = 0;
+  
+            while ((num_symb = read (fd_rd, buff, BUFF_SIZE)) > 0)
+            {
+                if (write (fd_wr, buff, num_symb) != num_symb)
+                    ERROR_INFO ("write ()");
+            }
             if (num_symb < 0)
-            {
                 ERROR_INFO ("ERROR! Something wrong with read()\n");
-                exit       (EXIT_FAILURE);
-            }
 
-            if (close (elem_cnct->fd_in))
-            {
-                ERROR_INFO ("close_in ()");
-                exit       (EXIT_FAILURE); 
-            }
-            elem_cnct->fd_in = -1;         
+            if (close(fd_rd) < 0)
+                ERROR_INFO ("close ()");
 
-            if (close (elem_cnct->fd_out))
-            {
-                ERROR_INFO ("close_out ()");
-                exit       (EXIT_FAILURE); 
-            }
-            elem_cnct->fd_out = -1;
+            if (close(fd_wr) < 0)
+                ERROR_INFO ("close ()");
 
-            DBG_PRINT ("!children died\n");
-
-            exit (EXIT_SUCCESS); 
+            exit (EXIT_SUCCESS);
         }
-        else if (pid == -1)
+        else  // parent
         {
-            ERROR_INFO ("fork ()");
-            exit       (EXIT_FAILURE);
+            if (i_chld == num_proc)
+                break;
+
+            if (close(cur_elem.fd_from_prnt[RD]) < 0) 
+                ERROR_INFO ("close ()");
+            cur_elem.fd_from_prnt[RD] = -1;
+
+            if (close(cur_elem.fd__to__prnt[WR]) < 0)
+                ERROR_INFO ("close ()");
+            cur_elem.fd__to__prnt[WR] = -1;
+
+            info_elems[i_chld] = cur_elem;
         }
+
+        if (pid_chld < 0)
+            ERROR_INFO ("fork ()");
     }
 
-    int max_fd    = -1;
-    int ret_read  = -1;
-    int ret_write = -1;
-    int num_rd    = -1;
-    int num_wr    = -1;
+    info_connect* inf_con = (info_connect*) calloc (num_proc, sizeof (info_connect));
+    if           (inf_con == NULL)
+        ERROR_INFO ("calloc ()");
 
-    for (int i = 0; i < num_proc - 1; i++)
+    for (int i_prnt = 0; i_prnt < num_proc; i_prnt++)
     {
-        DBG_PRINT ("\nstart cycle\n");
+        inf_con[i_prnt].fd_rd = info_elems[i_prnt    ].fd__to__prnt[RD];
+        inf_con[i_prnt].fd_wr = info_elems[i_prnt + 1].fd_from_prnt[WR];
 
-        fd_set fds_rd;
-        FD_ZERO(&fds_rd);
+        int size_buf = MIN (pow (3, num_proc - i_prnt + 4), 128000);
 
-        for (int i_fd = 0; i_fd < i + 1; i_fd++)
+            inf_con[i_prnt].buf = (char*) calloc (size_buf, sizeof (char));
+        if (inf_con[i_prnt].buf == NULL)
+            ERROR_INFO ("calloc ()");
+
+        inf_con[i_prnt].end_buf = inf_con[i_prnt].buf + size_buf;
+
+        inf_con[i_prnt].cur_read  = inf_con[i_prnt].buf;
+        inf_con[i_prnt].cur_write = inf_con[i_prnt].buf;
+
+        inf_con[i_prnt].full  = 0;
+        inf_con[i_prnt].empty = size_buf;
+    }
+
+    int i_chld = 0;
+    while (i_chld < num_proc)
+    {
+        fd_set fds_rd, fds_wr;
+        FD_ZERO (&fds_rd);
+        FD_ZERO (&fds_wr);
+
+        int max_fd = 0;
+        for (int i = i_chld; i < num_proc - 1; i++)
         {
-            if (i_fd == num_proc - 1)
-                break;
-
-            if (elem_cnct[i_fd].fd_in > max_fd)
-                max_fd = elem_cnct[i_fd].fd_in;
-
-            if (elem_cnct[i_fd].fd_in != -1)
+            if (inf_con[i].fd_rd != -1 && inf_con[i].empty > 0) 
             {
-                FD_SET (elem_cnct[i_fd].fd_in, &fds_rd);
-                num_rd++;
+                FD_SET (inf_con[i].fd_rd, &fds_rd);
+
+                if (inf_con[i].fd_rd > max_fd)
+                    max_fd = inf_con[i].fd_rd;
+            }
+
+            if (inf_con[i].fd_wr != -1 && inf_con[i].full > 0) 
+            {
+                FD_SET (inf_con[i].fd_wr, &fds_wr);
+
+                if (inf_con[i].fd_wr > max_fd)
+                    max_fd = inf_con[i].fd_wr;
             }
         }
-        PRINT_STEP (num_rd, %d);
 
-        if (num_rd > 0)
+        printf ("Before select\n");
+
+        int ret_select = select (max_fd + 1, &fds_rd, &fds_wr, NULL, NULL);
+        if (ret_select < 0 && errno != EINTR)
+            ERROR_INFO ("select ()");
+        errno = 0;
+
+        printf ("After select\n");
+
+        for (int i = i_chld; i < num_proc - 1; i++)
         {
-            if (select (max_fd + 1, &fds_rd, NULL, NULL, NULL) < 0)
+            if (FD_ISSET (inf_con[i].fd_rd, &fds_rd) && inf_con[i].empty > 0)
             {
-                ERROR_INFO ("select {read} ()");
-                exit       (EXIT_FAILURE);
-            }
+                int ret_read = read (inf_con[i].fd_rd, inf_con[i].cur_read, inf_con[i].empty);
+                if (ret_read < 0) 
+                    ERROR_INFO ("read ()");
 
-            num_rd = -1;
-        }
-
-        for (int i_fd = 0; i_fd < i + 1; i_fd++)
-        {
-            if (i_fd == num_proc - 1)
-                break;
-
-            if (FD_ISSET (elem_cnct[i_fd].fd_in, &fds_rd))
-            {
-                PRINT_STEP (elem_cnct[i_fd].fd_in, %d);
-
-                ret_read = read (elem_cnct[i_fd].fd_in, elem_cnct[i_fd].buf, elem_cnct[i_fd].size_buf);
-
-                if (ret_read > 0)
+                if (ret_read == 0) 
                 {
-                    num_proc++;
+                    close (inf_con[i].fd_rd);
+                    inf_con[i].fd_rd = -1;
+                    
                     break;
                 }
 
-                if (ret_read == 0)
-                {
-                    if (close (elem_cnct[i_fd].fd_in))
-                    {
-                        ERROR_INFO ("close ()");
-                        exit       (EXIT_FAILURE);                        
-                    }
+                if (inf_con[i].cur_read >= inf_con[i].cur_write)
+                    inf_con[i].full     += ret_read;
 
-                    elem_cnct[i_fd].fd_in = -1;
+                if (inf_con[i].cur_read + ret_read == inf_con[i].end_buf) 
+                {
+                    inf_con[i].cur_read = inf_con[i].buf;
+                    inf_con[i].empty    = inf_con[i].cur_write - inf_con[i].cur_read;
                 }
-
-                if (ret_read < 0)
+                else 
                 {
-                    ERROR_INFO ("read ()");
-                    exit       (EXIT_FAILURE);
+                    inf_con[i].cur_read += ret_read;
+                    inf_con[i].empty    -= ret_read;
                 }
             }
-        }
 
-        fd_set fds_wr;
-        FD_ZERO(&fds_wr);
-
-        for (int i_fd = 0; i_fd < i + 1; i_fd++)
-        {
-            if (i_fd == num_proc - 1)
-                break;
-
-            if (elem_cnct[i_fd].fd_out > max_fd)
-                max_fd = elem_cnct[i_fd].fd_out;
-
-            if (elem_cnct[i_fd].fd_out != -1)
+            if (FD_ISSET (inf_con[i].fd_wr, &fds_wr) && inf_con[i].full > 0)
             {
-                FD_SET (elem_cnct[i_fd].fd_out, &fds_wr);
-                num_wr++;
-            }
-        }
-
-        if (num_wr > 0)
-        {
-            if (select (max_fd + 1, NULL, &fds_wr, NULL, NULL) < 0)
-            {
-                ERROR_INFO ("select {read} ()");
-                exit       (EXIT_FAILURE);
-            }
-
-            num_wr = -1;
-        }
-
-        for (int i_fd = 0; i_fd < i + 1; i_fd++)
-        {
-            if (i_fd == num_proc - 1)
-                break;
-
-            if (FD_ISSET (elem_cnct[i_fd].fd_out, &fds_rd))
-            {
-                ret_write = write (elem_cnct[i_fd].fd_out, elem_cnct[i_fd].buf, elem_cnct[i_fd].size_buf);
-
-                if (ret_write == 0)
-                {
-                    if (close (elem_cnct[i_fd].fd_out))
-                    {
-                        ERROR_INFO ("close ()");
-                        exit       (EXIT_FAILURE);                        
-                    }
-
-                    elem_cnct[i_fd].fd_out = -1;
-                }
-
-                if (ret_write < 0)
-                {
+                int ret_write = write (inf_con[i].fd_wr, inf_con[i].cur_write, inf_con[i].empty);
+                if (ret_write < 0 && errno != EAGAIN) 
                     ERROR_INFO ("write ()");
-                    exit       (EXIT_FAILURE);
+                errno = 0;
+
+                if (ret_write == 0) 
+                {
+                    close (inf_con[i].fd_wr);
+                    inf_con[i].fd_wr = -1;
+                    
+                    break;
                 }
+
+                if (inf_con[i].cur_write >= inf_con[i].cur_read)
+                    inf_con[i].empty     += ret_write;
+
+                if (inf_con[i].cur_write + ret_write == inf_con[i].end_buf) 
+                {
+                    inf_con[i].cur_write = inf_con[i].buf;
+                    inf_con[i].full      = inf_con[i].cur_read - inf_con[i].cur_write;
+                }
+                else 
+                {
+                    inf_con[i].cur_write += ret_write;
+                    inf_con[i].full      -= ret_write;
+                }
+            }
+
+            if (inf_con[i].fd_rd == -1 && inf_con[i].full == 0) 
+            {
+                if (i != i_chld)
+                    ERROR_INFO ("Child died");
+
+                errno = 0;
+                if (close(inf_con[i].fd_wr < 0))
+                    ERROR_INFO ("close ()");
+                inf_con[i].fd_wr = -1;
+
+                i_chld++;
             }
         }
     }
 
-    DBG_PRINT ("\n\nconnect_info destruct\n");
-
-    while (wait (NULL) != -1)
-    {}
-
-    for (int i = 0; i < num_proc; i++)
+    for (int i_prnt = 0; i_prnt < num_proc - 1; i_prnt)
     {
-        free (elem_cnct[i].buf);
-        elem_cnct[i].buf = NULL;
+        free (inf_con[i_prnt].buf);
+        inf_con[i_prnt].buf = NULL;
     }
 
-    free (elem_cnct);
-    elem_cnct = NULL;
+    free (inf_con);
+    inf_con = NULL;
 
-    free (cnct_info.read_fds);
-    cnct_info.read_fds  = NULL;
-
-    free (cnct_info.write_fds);
-    cnct_info.write_fds = NULL;
-
-    num_proc  = -1;
+    while (waitpid (-1, NULL, 0))
+        if (errno == ECHILD) 
+            break;
 }
 
 //----------------------------------------------

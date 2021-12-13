@@ -13,6 +13,7 @@
 #include <limits.h>
 #include <stdbool.h>
 #include <sys/prctl.h>
+#include <sys/select.h>
 #include <sys/wait.h>
 #include <signal.h> 
 
