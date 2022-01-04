@@ -80,7 +80,7 @@ void transfer_data (int num_proc, const char* file_name)
 
         if (pid_chld == 0) // child
         {
-
+            printf ("child = %d\n", i_chld);
             if (prctl (PR_SET_PDEATHSIG, SIGTERM) < 0)
                 ERROR_INFO ("prctl () ");
 
@@ -149,9 +149,6 @@ void transfer_data (int num_proc, const char* file_name)
         }
         else  // parent
         {
-            if (i_chld == num_proc)
-                break;
-
             if (close(cur_elem.fd_from_prnt[RD]) < 0) 
                 ERROR_INFO ("close ()");
             cur_elem.fd_from_prnt[RD] = -1;

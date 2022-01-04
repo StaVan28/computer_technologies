@@ -1,6 +1,7 @@
 a.out
 token.txt
 *.o
+main1.c
 
 write_fifo
 read_fifo
@@ -9,3 +10,5 @@ queue
 
 write_sharmem
 read_sharmem
+
+select
