@@ -12,3 +12,10 @@ write_sharmem
 read_sharmem
 
 select
+
+*.gcda
+*.gcno
+*.info
+*.d
+bit_array_test
+*report_lcov
