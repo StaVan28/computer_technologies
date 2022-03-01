@@ -32,11 +32,11 @@ vpath %.h ../
 ## launch 
 all: lcov
 
-gcov: launch
+gcov: valgrind
 	$(E) "    GCOV: " $(BIN)
 	$(Q) gcov $(SRC) -o ..
 
-lcov: launch
+lcov: valgrind
 	$(E) "    LCOV: " $(BIN)
 	$(Q) lcov -t "$(BIN)" -o    $(INFO) -c -d .. --rc lcov_branch_coverage=1
 	$(Q) genhtml -o report_lcov $(INFO)          --rc lcov_branch_coverage=1
@@ -45,6 +45,10 @@ lcov: launch
 launch: $(BIN)
 	$(E) "    LAUNCH:      " $(BIN)
 	$(Q) ./$(BIN)
+
+valgrind: $(BIN)
+	$(E) "    LAUNCH(valg):" $(BIN)
+	$(Q) valgrind ./$(BIN)
 
 #
 ## linking
@@ -61,8 +65,9 @@ $(BIN): $(OBJ)
 ## additional features
 clean:
 	$(E) "  CLEAN"
-	$(Q) rm -rf    *.o    *.d s*.a report *.info *.gcno \
-	            ../*.o ../*.d 
+	$(Q) rm -rf    *.o    *.d    *.info    *.gcno report_lcov \
+	            ../*.o ../*.d ../*.info ../*.gcno $(BIN)
+
 rebuild: clean default
 
 log:

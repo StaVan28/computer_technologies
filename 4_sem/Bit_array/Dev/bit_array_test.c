@@ -11,20 +11,18 @@ static const int NUM_ARGC = 1;
 
 int main (int argc, const char* argv[])
 {
-	if (argc != NUM_ARGC)
-	{
-		fprintf (stderr, "ERROR! Usage ./bit_array_test\n");
-		exit    (EXIT_FAILURE);
-	}
+    if (argc != NUM_ARGC)
+    {
+        fprintf (stderr, "ERROR! Usage ./bit_array_test\n");
+        exit    (EXIT_FAILURE);
+    }
 
-	int a = 28;
-	test_func (a);
+    my_bit_array bit_array;
+    bit_array_init   (&bit_array, 7);
+    bit_array_deinit (&bit_array);
 
-	a = 27;
-	test_func (a);
-
-	a = -1;
-	test_func (a);
+    my_bit_array* bit_array2 = bit_array_construct (7);
+    bit_array_destruct (bit_array2);
 }
 
 //-----------------------------------------

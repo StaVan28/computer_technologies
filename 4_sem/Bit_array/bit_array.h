@@ -4,24 +4,33 @@
 
 //-----------------------------------------
 
-#define DEBUG
-
 #include <stdint.h>
 
 //-----------------------------------------
 
-struct my_bit_array
-{
-    uint64_t num_of_bits;
-    uint64_t num_of_words;
+typedef uint64_t bit_index_t, word_t;
 
-    uint64_t* arr_bits;
-    uint64_t  capacity;
+//-----------------------------------------
+
+typedef struct my_bit_array
+{
+    bit_index_t num_of_bits_;
+    word_t      num_of_words_;
+
+    word_t  capacity_;
+    word_t* buff_bits_;
 } my_bit_array;
 
 //-----------------------------------------
 
-void test_func (int a);
+my_bit_array* bit_array_construct (bit_index_t num_of_bits);
+void          bit_array_destruct  (my_bit_array* bit_array);
+
+my_bit_array* bit_array_init   (my_bit_array* bit_array, bit_index_t num_of_bits);
+void          bit_array_deinit (my_bit_array* bit_array);
+
+//my_bit_array* bit_array_alloc   (my_bit_array* bit_array);
+//my_bit_array* bit_array_dealloc (my_bit_array* bit_array);
 
 //-----------------------------------------
 
