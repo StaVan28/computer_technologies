@@ -85,7 +85,7 @@ FILE* test_fopen(const char* pathname, const char* mode)
                                                                  \
                 fprintf (stderr, "file = {%s}, line = {%d}\n",   \
                                   __FILE__,    __LINE__       ); \
-            } while (0);                                         \
+            } while (0)                                          \
 
 //-----
 
