@@ -161,7 +161,6 @@ void test_bit_region_operations ()
 
 /*
 TODO
-2) tests for all
 3) find
 4) test to find
 5) dynamic array (double up)

@@ -3,6 +3,7 @@
 |-------------------------------------|
 
     num_of_bits  = [28];
+    num_of_words = [1];
     capacity     = [2];
     buff_bits    = [0x4a92120];
 

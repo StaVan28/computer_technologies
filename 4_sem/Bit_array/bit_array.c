@@ -132,7 +132,8 @@ void bit_array_init (my_bit_array* bit_array, bit_index_t num_of_bits)
 {
     bit_array->num_of_bits  = num_of_bits;
 
-    word_t word64_to_pow2 = roundup_word64_to_pow2 (ROUNDUP_BITS_TO_WORDS (num_of_bits));
+    bit_array->num_of_words = ROUNDUP_BITS_TO_WORDS  (num_of_bits);
+    word_t word64_to_pow2   = roundup_word64_to_pow2 (bit_array->num_of_words);
     if (word64_to_pow2 > MIN_CAPACITY)
         bit_array->capacity = word64_to_pow2;
     else
@@ -230,11 +231,13 @@ void bit_array_dump (my_bit_array* bit_array)
                        "|-------------------------------------|\n"
                        "\n"
                        "    num_of_bits  = [%" PRIu64 "];\n"
+                       "    num_of_words = [%" PRIu64 "];\n"
                        "    capacity     = [%" PRIu64 "];\n"
                        "    buff_bits    = [%p];\n"
                        "\n"
                        "    Buffer bits:\n",
                             bit_array->num_of_bits,
+                            bit_array->num_of_words,
                             bit_array->capacity,
                             bit_array->buff_bits
                        );
@@ -476,56 +479,6 @@ void bit_array_toggle_region (my_bit_array* bit_array, bit_index_t start, bit_in
 //--------------
 //   find funcs
 //--------------
-/*
-bit_index_t bit_array_find_first_set_bit (my_bit_array* bit_array)
-{
-    return bit_array_find_next_set_bit (bit_array, 0);
-}
 
-//-----
-
-bit_index_t bit_array_find_next_set_bit (my_bit_array* bit_array, bit_index_t start)
-{
-    if (start > bit_array->num_of_bits)
-    {
-        ERROR_INFO ("index > num_of_bits");
-        return 0;
-    }
-}
-
-char test(const BIT_ARRAY* bitarr, bit_index_t start, bit_index_t* result)
-{
-    if (bitarr->num_of_bits == 0 || start >= bitarr->num_of_bits) 
-        return 0;
-
-    //Find first word that is greater than zero
-    word_addr_t i = bitset64_wrd(start);
-    word_t w = (bitarr->words[i]) & ~bitmask64(bitset64_idx(start));
-
-    while (1) 
-    {
-        if (w > 0)
-        {
-            bit_index_t pos = i * WORD_SIZE + trailing_zeros(w);
-            if (pos < bitarr->num_of_bits) 
-            { 
-                *result = pos; 
-                return 1;
-            }
-            else 
-                return 0;
-        }
-        
-        i++;
-        
-        if(i >= bitarr->num_of_words)
-            break;
-
-        w = bitarr->words[i];
-    }
-
-    return 0; \
-}
-*/
 
 //-----------------------------------------
