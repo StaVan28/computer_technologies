@@ -11,11 +11,10 @@
 #--------------------------------------------------------------------------------------
 
 # source
-BIN   = $(addsuffix _test, $(PROJECT))
-SRC  += $(addsuffix .c,    $(BIN))
+BIN   = ../$(PROJECT)
+SRC  +=    $(addsuffix _test.c, $(PROJECT))
 OBJ   = $(SRC:%.c=%.o)
 HDR   = $(OBJ:%.o=%.h)
-INFO  = $(addsuffix .info, $(BIN))
 
 # find ../files 
 vpath %.c ../
@@ -30,7 +29,7 @@ vpath %.h ../
 
 #
 ## launch 
-all: lcov
+all: $(BIN)
 
 gcov: valgrind
 	$(E) "    GCOV: " $(BIN)

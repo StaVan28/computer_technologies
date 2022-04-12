@@ -25,15 +25,23 @@ const char* DUMP_FILE_BIT_ARRAY = "dump_bit_array.txt";
     #define MY_MALLOC(size)         malloc (size)
     #define MY_CALLOC(nmemb, size)  calloc (nmemb, size)
     #define MY_FOPEN(path, flags)   fopen  (path, flags)
+    #define ERROR_INFO(err_str)                                     \
+                do {                                                \
+                    perror ("ERROR! " err_str);                     \
+                } while (0)
 #else
     #define MY_MALLOC(size)         test_malloc (size)
     #define MY_CALLOC(nmemb, size)  test_calloc (nmemb, size)
     #define MY_FOPEN(path, flags)   test_fopen  (path, flags)
+    #define ERROR_INFO(err_str)                                      \
+                do {                                                 \
+                                                                     \
+                } while (0)
 #endif
 
 //-----
 
-size_t GL_COUNTER_ALLOC = 0;
+static size_t GL_COUNTER_ALLOC = 0;
 
 //-
 
@@ -62,7 +70,7 @@ static void* test_calloc(size_t nmemb, size_t size)
 
 //-----
 
-size_t GL_COUNTER_FOPEN = 0;
+static size_t GL_COUNTER_FOPEN = 0;
 
 //-
 
@@ -78,17 +86,6 @@ FILE* test_fopen(const char* pathname, const char* mode)
 
 //-----
 
-#define ERROR_INFO(err_str)                                      \
-            do {                                                 \
-                perror  (        "ERROR! " err_str);             \
-                fprintf (stderr, "errno = %d\n", errno);         \
-                                                                 \
-                fprintf (stderr, "file = {%s}, line = {%d}\n",   \
-                                  __FILE__,    __LINE__       ); \
-            } while (0);                                         \
-
-//-----
-
 #define WORD_MAX    ~(word_t) 0
 #define WORD_MIN     (word_t) 0
 
@@ -101,7 +98,7 @@ FILE* test_fopen(const char* pathname, const char* mode)
 static word_t bit_mask_64 (bit_index_t length)
 {
     if (length)
-        return WORD_MAX << (WORD_SIZE - (length));
+        return WORD_MAX << ( WORD_SIZE - (length) );
     else
         return WORD_MIN;
 }
@@ -160,7 +157,7 @@ void bit_array_deinit (my_bit_array* bit_array)
 my_bit_array* bit_array_construct (bit_index_t num_of_bits)
 {
     my_bit_array* bit_array = (my_bit_array*) MY_MALLOC(sizeof (my_bit_array));
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("create struct");
         errno = ENOMEM;
@@ -183,7 +180,7 @@ my_bit_array* bit_array_construct (bit_index_t num_of_bits)
 
 void bit_array_destruct (my_bit_array* bit_array)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
         return;
@@ -200,7 +197,7 @@ void bit_array_destruct (my_bit_array* bit_array)
 
 bit_index_t bit_array_length (my_bit_array* bit_array)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
         return 0;
@@ -211,19 +208,19 @@ bit_index_t bit_array_length (my_bit_array* bit_array)
 
 //--------
 
-void bit_array_dump (my_bit_array* bit_array)
+char bit_array_dump (my_bit_array* bit_array)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
-        return;
+        return EXIT_FAILURE;
     }    
 
     FILE* dump = MY_FOPEN(DUMP_FILE_BIT_ARRAY, "wb");
-    if (!dump)
+    if (dump == NULL)
     {
         ERROR_INFO ("Incorrect open of dump");
-        return;
+        return EXIT_FAILURE;
     }
 
     fprintf (dump,     "|-------------------------------------|\n"
@@ -266,26 +263,32 @@ void bit_array_dump (my_bit_array* bit_array)
                        );
 
     fclose (dump);
+
+    return EXIT_SUCCESS;
 }
 
 //--------
 
-void bit_array_foreach (my_bit_array* bit_array, int (*func) (uint8_t, void*), void* data)
+long bit_array_foreach (my_bit_array* bit_array, int (*func) (uint8_t, void*, void*), void* data, void* result)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
-        return;
+        return EXIT_FAILURE;
     }
 
-    if (!func)
+    if (func == NULL)
     {
         ERROR_INFO ("null func");
-        return;        
+        return EXIT_FAILURE;
     }
 
+    long ret_func = 0;
+
     for (bit_index_t i = 0; i < bit_array->num_of_bits; i++)
-        func (bit_array_get_bit (bit_array, i), data);
+        ret_func += func (bit_array_get_bit (bit_array, i), data, result);
+
+    return ret_func;
 }
 
 //-----------------
@@ -294,13 +297,13 @@ void bit_array_foreach (my_bit_array* bit_array, int (*func) (uint8_t, void*), v
 
 void bit_array_set_bit (my_bit_array* bit_array, bit_index_t index)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
         return;
     }
 
-    if (index > bit_array->num_of_bits)
+    if (index >= bit_array->num_of_bits)
     {
         ERROR_INFO ("index > num_of_bits");
         return;
@@ -313,13 +316,13 @@ void bit_array_set_bit (my_bit_array* bit_array, bit_index_t index)
 
 void bit_array_clear_bit (my_bit_array* bit_array, bit_index_t index)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
         return;
     }
 
-    if (index > bit_array->num_of_bits)
+    if (index >= bit_array->num_of_bits)
     {
         ERROR_INFO ("index > num_of_bits");
         return;
@@ -332,13 +335,13 @@ void bit_array_clear_bit (my_bit_array* bit_array, bit_index_t index)
 
 int bit_array_get_bit (my_bit_array* bit_array, bit_index_t index)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
         return 0;
     }
 
-    if (index > bit_array->num_of_bits)
+    if (index >= bit_array->num_of_bits)
     {
         ERROR_INFO ("index > num_of_bits");
         return 0;
@@ -351,13 +354,13 @@ int bit_array_get_bit (my_bit_array* bit_array, bit_index_t index)
 
 void bit_array_toggle_bit (my_bit_array* bit_array, bit_index_t index)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
         return;
     }
 
-    if (index > bit_array->num_of_bits)
+    if (index >= bit_array->num_of_bits)
     {
         ERROR_INFO ("index > num_of_bits");
         return;
@@ -372,7 +375,7 @@ void bit_array_toggle_bit (my_bit_array* bit_array, bit_index_t index)
 
 void bit_array_set_region (my_bit_array* bit_array, bit_index_t start, bit_index_t length)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
         return;
@@ -397,7 +400,7 @@ void bit_array_set_region (my_bit_array* bit_array, bit_index_t start, bit_index
         // first word
         bit_array->buff_bits[first_word] |= ~bit_mask_64 (first_offset);
 
-        for(word_t i_word = first_word + 1; i_word < last_word; i_word++)
+        for (word_t i_word = first_word + 1; i_word < last_word; i_word++)
             bit_array->buff_bits[i_word] = WORD_MAX;
 
         bit_array->buff_bits[last_word]  |=  bit_mask_64 (last_offset + 1);
@@ -408,7 +411,7 @@ void bit_array_set_region (my_bit_array* bit_array, bit_index_t start, bit_index
 
 void bit_array_clear_region (my_bit_array* bit_array, bit_index_t start, bit_index_t length)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
         return;
@@ -433,7 +436,7 @@ void bit_array_clear_region (my_bit_array* bit_array, bit_index_t start, bit_ind
         // first word
         bit_array->buff_bits[first_word] &=  bit_mask_64 (first_offset);
 
-        for(word_t i_word = first_word + 1; i_word < last_word; i_word++)
+        for (word_t i_word = first_word + 1; i_word < last_word; i_word++)
             bit_array->buff_bits[i_word] = WORD_MIN;
 
         bit_array->buff_bits[last_word]  &= ~bit_mask_64 (last_offset + 1);
@@ -444,7 +447,7 @@ void bit_array_clear_region (my_bit_array* bit_array, bit_index_t start, bit_ind
 
 void bit_array_toggle_region (my_bit_array* bit_array, bit_index_t start, bit_index_t length)
 {
-    if (!bit_array)
+    if (bit_array == NULL)
     {
         ERROR_INFO ("null struct");
         return;
@@ -456,8 +459,8 @@ void bit_array_toggle_region (my_bit_array* bit_array, bit_index_t start, bit_in
     word_t  first_word   = NUMB_OF_WORD64 (start);
     uint8_t first_offset = INDX_IN_WORD64 (start);
 
-    word_t  last_word   = NUMB_OF_WORD64 (start + length - 1);
-    uint8_t last_offset = INDX_IN_WORD64 (start + length - 1);
+    word_t  last_word    = NUMB_OF_WORD64 (start + length - 1);
+    uint8_t last_offset  = INDX_IN_WORD64 (start + length - 1);
 
     if (first_word == last_word)
     {
@@ -469,7 +472,7 @@ void bit_array_toggle_region (my_bit_array* bit_array, bit_index_t start, bit_in
         // first word
         bit_array->buff_bits[first_word] ^= ~bit_mask_64 (first_offset);
 
-        for(word_t i_word = first_word + 1; i_word < last_word; i_word++)
+        for (word_t i_word = first_word + 1; i_word < last_word; i_word++)
             bit_array->buff_bits[i_word] ^= WORD_MAX;
 
         bit_array->buff_bits[last_word]  ^=  bit_mask_64 (last_offset + 1);
@@ -480,5 +483,81 @@ void bit_array_toggle_region (my_bit_array* bit_array, bit_index_t start, bit_in
 //   find funcs
 //--------------
 
+// return 0 if no bits = 1
+char bit_array_find_set_bit (my_bit_array* bit_array, bit_index_t start, bit_index_t* result)
+{
+    if (bit_array == NULL)
+    {
+        ERROR_INFO ("null struct");
+        return 0;
+    }
+
+    if (start > bit_array->num_of_bits)
+        return 0;
+
+    word_t   i_word = NUMB_OF_WORD64 (start);
+    word_t cur_word = ( bit_array->buff_bits[i_word]) & ~(bit_mask_64 (INDX_IN_WORD64 (start)) );
+
+    while (1) 
+    {
+        if (cur_word > 0)
+        {
+            bit_index_t pos = i_word * WORD_SIZE + __builtin_ffsll (cur_word) - 1;
+            if (pos < bit_array->num_of_bits) 
+            { 
+                *result = pos; 
+                return 1;
+            }
+        }
+        
+        i_word++;
+        
+        if(i_word >= bit_array->num_of_words)
+            break;
+
+        cur_word = bit_array->buff_bits[i_word];
+    }
+
+    return 0;
+}
+
+//-------
+
+char bit_array_find_clear_bit (my_bit_array* bit_array, bit_index_t start, bit_index_t* result)
+{
+    if (bit_array == NULL)
+    {
+        ERROR_INFO ("null struct");
+        return 0;
+    }
+
+    if (start > bit_array->num_of_bits)
+        return 0;
+
+    word_t   i_word = NUMB_OF_WORD64 (start);
+    word_t cur_word = ~( (bit_array->buff_bits[i_word]) | (bit_mask_64 (INDX_IN_WORD64 (start))) );
+
+    while (1) 
+    {
+        if (cur_word > 0)
+        {
+            bit_index_t pos = i_word * WORD_SIZE + __builtin_ffsll (cur_word) - 1;
+            if (pos < bit_array->num_of_bits) 
+            { 
+                *result = pos; 
+                return 1;
+            }
+        }
+        
+        i_word++;
+        
+        if(i_word >= bit_array->num_of_words)
+            break;
+
+        cur_word = ~bit_array->buff_bits[i_word];
+    }
+
+    return 0;
+}
 
 //-----------------------------------------
