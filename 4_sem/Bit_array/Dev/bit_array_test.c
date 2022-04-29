@@ -95,13 +95,7 @@ int main (int argc, const char* argv[])
     printf ("        TEST bit array lib:\n");
 
 
-    test_bit_array_find_bit    ();
-    test_bit_array_construct   ();
-    test_bit_array_length      ();
-    test_bit_array_dump        ();
-    test_bit_array_foreach     ();
-    test_bit_1_operations      ();
-    test_bit_region_operations ();
+    all_coverage_lib ();
 
 
     printf("\n");
@@ -118,15 +112,13 @@ int main (int argc, const char* argv[])
 
 void all_coverage_lib ()
 {
+    test_bit_array_find_bit    ();
     test_bit_array_construct   ();
     test_bit_array_length      ();
     test_bit_array_dump        ();
     test_bit_array_foreach     ();
     test_bit_1_operations      ();
     test_bit_region_operations ();
-    test_bit_array_foreach     ();
-    test_bit_array_find_bit    ();
-
 }
 
 void test_bit_array_construct ()
@@ -270,10 +262,10 @@ void test_bit_1_operations ()
             ASSERT (bit_array_get_bit (ba, 16) == 0);
 
         // covering the boundary case
-        bit_array_set_bit    (ba, 28);
-        bit_array_clear_bit  (ba, 28);
-        bit_array_get_bit    (ba, 28);
-        bit_array_toggle_bit (ba, 28);
+        bit_array_set_bit    (ba, 200);
+        bit_array_clear_bit  (ba, 200);
+        bit_array_get_bit    (ba, 200);
+        bit_array_toggle_bit (ba, 200);
 
         bit_array_destruct (ba);
     }

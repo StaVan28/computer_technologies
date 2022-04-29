@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <inttypes.h>
 #include <stdbool.h>
+#include <string.h>
 #include "bit_array.h"
 
 //-----------------------------------------
@@ -17,9 +18,11 @@
 
 //-----
 
-const char* DUMP_FILE_BIT_ARRAY = "dump_bit_array.txt";
+static const char* DUMP_FILE_BIT_ARRAY = "dump_bit_array.txt";
 
-//-----
+//-------------------
+//    tests funcs
+//-------------------
 
 #ifdef _RELEASE
     #define MY_MALLOC(size)         malloc (size)
@@ -74,7 +77,7 @@ static size_t GL_COUNTER_FOPEN = 0;
 
 //-
 
-FILE* test_fopen(const char* pathname, const char* mode)
+static FILE* test_fopen(const char* pathname, const char* mode)
 {
     GL_COUNTER_FOPEN++;
 
@@ -84,7 +87,9 @@ FILE* test_fopen(const char* pathname, const char* mode)
         return NULL;
 }
 
-//-----
+//-------------------
+//    bit opers
+//-------------------
 
 #define WORD_MAX    ~(word_t) 0
 #define WORD_MIN     (word_t) 0
@@ -119,6 +124,49 @@ static word_t roundup_word64_to_pow2 (word_t word64)
     word64 += (word64 == 0);
     
     return word64;
+}
+
+//-------------------
+//    resize
+//-------------------
+
+static char bit_array_resize (my_bit_array* bit_array, bit_index_t new_num_of_bits)
+{
+    word_t old_num_of_words = bit_array->num_of_words;
+    word_t new_num_of_words = ROUNDUP_BITS_TO_WORDS (new_num_of_bits);
+
+    bit_array->num_of_bits  = new_num_of_bits;
+    bit_array->num_of_words = new_num_of_words;
+
+    if (new_num_of_words > bit_array->capacity)
+    {
+        word_t old_capacity_in_words = bit_array->capacity;
+        word_t old_capacity_in_bytes = bit_array->capacity * WORD_SIZE;
+
+        bit_array->capacity          = roundup_word64_to_pow2 (bit_array->num_of_words);
+        word_t new_capacity_in_bytes = bit_array->capacity * WORD_SIZE;
+
+        word_t* tmp_buff_bits = bit_array->buff_bits;
+
+        bit_array->buff_bits = (word_t*) realloc (bit_array->buff_bits, bit_array->capacity * WORD_SIZE);
+        if (bit_array->buff_bits == NULL)
+        {
+            bit_array->buff_bits = tmp_buff_bits;
+            ERROR_INFO ("realloc");
+
+            return 1;
+        }
+
+        bit_index_t diff_capacity_of_bits = new_capacity_in_bytes - old_capacity_in_bytes;
+        memset (bit_array->buff_bits + old_capacity_in_words, 0, diff_capacity_of_bits);
+    }
+    else if(new_num_of_words < old_num_of_words)
+    {
+        bit_index_t diff_capacity_of_bits = (old_num_of_words - new_num_of_words) * sizeof(bit_index_t);
+        memset (bit_array->buff_bits + new_num_of_words, 0, diff_capacity_of_bits);
+    }
+
+    return 0;
 }
 
 //-------------------
@@ -305,7 +353,7 @@ void bit_array_set_bit (my_bit_array* bit_array, bit_index_t index)
 
     if (index >= bit_array->num_of_bits)
     {
-        ERROR_INFO ("index > num_of_bits");
+        bit_array_resize (bit_array, index);
         return;
     }
 
@@ -324,7 +372,7 @@ void bit_array_clear_bit (my_bit_array* bit_array, bit_index_t index)
 
     if (index >= bit_array->num_of_bits)
     {
-        ERROR_INFO ("index > num_of_bits");
+        bit_array_resize (bit_array, index);
         return;
     }
 
@@ -343,7 +391,7 @@ int bit_array_get_bit (my_bit_array* bit_array, bit_index_t index)
 
     if (index >= bit_array->num_of_bits)
     {
-        ERROR_INFO ("index > num_of_bits");
+        bit_array_resize (bit_array, index);
         return 0;
     }
 
@@ -362,7 +410,7 @@ void bit_array_toggle_bit (my_bit_array* bit_array, bit_index_t index)
 
     if (index >= bit_array->num_of_bits)
     {
-        ERROR_INFO ("index > num_of_bits");
+        bit_array_resize (bit_array, index);
         return;
     }
 

@@ -37,8 +37,8 @@ gcov: valgrind
 
 lcov: valgrind
 	$(E) "    LCOV: " $(BIN)
-	$(Q) lcov -t "$(BIN)" -o    $(INFO) -c -d .. --rc lcov_branch_coverage=1
-	$(Q) genhtml -o report_lcov $(INFO)          --rc lcov_branch_coverage=1
+	$(Q) lcov    -t "$(PROJECT)" -o             $(INFO_LCOV) -c -d .. --rc lcov_branch_coverage=1
+	$(Q) genhtml                 -o report_lcov $(INFO_LCOV)          --rc lcov_branch_coverage=1
 	$(Q) x-www-browser ./report_lcov/Bit_array/index.html
 
 launch: $(BIN)
