@@ -26,6 +26,7 @@ void* integral (void* ptr)
     cpu_set_t cpu;
     CPU_ZERO (&cpu);
 
+    PRINT_STEP (thr_info->num_thread, %ld);
     CPU_SET (thr_info->num_thread, &cpu);
 
     int ret_setaffinity = pthread_setaffinity_np (thread, sizeof (cpu_set_t), &cpu);

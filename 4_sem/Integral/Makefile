@@ -32,7 +32,7 @@ RLS_MD = -g0 -O2
 # compiler settings
 CC         = gcc
 WARNINGS  += -Wall -Wextra
-  CFLAGS   = -lm -pthread -fPIC $(DBG_MD)
+  CFLAGS   = -lm -pthread -fPIC $(DBG_MD) -DDEBUG
  LDFLAGS  += -lm -pthread
 LIBFLAGS  +=
 INFO_LCOV  = $(addsuffix .info, $(BIN))

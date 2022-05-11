@@ -10,7 +10,7 @@
 
 // USER SETTING
 static const long double     X1 = 1;
-static const long double     X2 = 9;
+static const long double     X2 = 18;
 static const long double STEP_X = 0.0000001;
 
 //-----------------------------------------

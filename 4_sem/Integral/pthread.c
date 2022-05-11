@@ -16,7 +16,6 @@
 //------------------------------------
 
 // DON'T TOUCH
-static const ssize_t   EMPTY_THREAD = -1;
 static const pthread_t POISON_ID    =  0;
 
 //------------------------------------
@@ -66,9 +65,9 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
     {
         int_info->buf_info_thread[i_thread] = (thread_info) {
             .id_thread  = POISON_ID,
-            .num_thread = EMPTY_THREAD,
+            .num_thread = i_thread,
             .x1         = X1,
-            .x2         = X1,
+            .x2         = X1 + STEP_X,
             .step       = STEP_X
         };
     }
@@ -85,6 +84,8 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
             .x2         = X1 + (i_onl_thread + 1) * delta_x,
             .step       = STEP_X
         };
+
+        PRINT_STEP (int_info->buf_info_thread[i_thread].num_thread, %ld);
     }
 
     int_info->x1 = X1;
