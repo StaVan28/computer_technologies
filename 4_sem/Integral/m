@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+clear
+echo "----------------------------------------------------------------------------------------------"
+make
+
+echo "    LAUNCH:    " ./integral.out
+echo ""
+
+./time.sh $1
