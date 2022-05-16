@@ -6,6 +6,7 @@
 #include <errno.h>      // errno
 #include <math.h>       // atan()
 #include <unistd.h>     // sysconf()
+#include <mm_malloc.h>  // _mm_malloc() 
 
 #include "integral.h"
 #include "debug.h"
@@ -114,16 +115,21 @@ static thread_info* roundup_cache_line_alloc (size_t nmemb)
         ERROR_INFO ("size_cache_line");
 
     // round up
-    size_t round_up_size = (sizeof (thread_info) / size_cache_line + 1) * size_cache_line;
+    size_t round_up_size = ( sizeof (thread_info) == size_cache_line )                       ?
+                           ( (size_t) size_cache_line )                                      :
+                           ( (sizeof (thread_info) / size_cache_line + 1) * size_cache_line );
 
-    return (thread_info*) calloc (nmemb, round_up_size);
+    PRINT_STEP (sizeof (thread_info), %lu);
+    PRINT_STEP (round_up_size       , %lu);
+
+    return (thread_info*) _mm_malloc (nmemb * round_up_size, size_cache_line);
 }
 
 //------------------------------------
 
 static void roundup_cache_line_free (thread_info* ptr)
 {
-    free (ptr);
+    _mm_free (ptr);
 }
 
 //------------------------------------

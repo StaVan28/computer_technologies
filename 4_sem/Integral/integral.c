@@ -26,15 +26,22 @@ void* integral (void* ptr)
     cpu_set_t cpu;
     CPU_ZERO (&cpu);
 
+    CPU_SET    (thr_info->num_thread, &cpu);
     PRINT_STEP (thr_info->num_thread, %ld);
-    CPU_SET (thr_info->num_thread, &cpu);
 
     int ret_setaffinity = pthread_setaffinity_np (thread, sizeof (cpu_set_t), &cpu);
     if (ret_setaffinity < 0)
         ERROR_INFO ("pthread_setaffinity_np");
 
-    for (long double x = thr_info->x1; x < thr_info->x2; x += thr_info->step)
-        thr_info->sum += integral_func (x) * thr_info->step;
+    long double sum  = 0;
+    long double step = thr_info->step;
+    long double x1   = thr_info->x1;
+    long double x2   = thr_info->x2;
+
+    for (long double x = x1; x < x2; x += step)
+        sum += integral_func (x) * step;
+
+    thr_info->sum = sum;
 
     return NULL;
 }
