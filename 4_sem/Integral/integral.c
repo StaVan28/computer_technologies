@@ -26,8 +26,12 @@ void* integral (void* ptr)
     cpu_set_t cpu;
     CPU_ZERO (&cpu);
 
-    CPU_SET    (thr_info->num_thread, &cpu);
     PRINT_STEP (thr_info->num_thread, %ld);
+
+    if (thr_info->num_thread == POISON_NUM_THREAD)
+        CPU_SET (0, &cpu);
+    else
+        CPU_SET (thr_info->num_thread, &cpu);
 
     int ret_setaffinity = pthread_setaffinity_np (thread, sizeof (cpu_set_t), &cpu);
     if (ret_setaffinity < 0)

@@ -17,7 +17,7 @@
 //------------------------------------
 
 // DON'T TOUCH
-static const pthread_t POISON_ID    =  0;
+static const pthread_t POISON_ID = 0;
 
 //------------------------------------
 
@@ -73,10 +73,12 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
         };
     }
 
-    long double delta_x = (X2 - X1) / int_info->input_threads;
+    long double delta_x = ( int_info->max_threads > int_info->online_threads ) ?
+                          ( (X2 - X1) / int_info->online_threads )             :
+                          ( (X2 - X1) / int_info-> input_threads )             ;
 
     // fill useful treads
-    for (size_t i_onl_thread = 0; i_thread < int_info->max_threads; i_thread++, i_onl_thread++)
+    for (size_t i_onl_thread = 0; i_thread < int_info->online_threads; i_thread++, i_onl_thread++)
     {
         int_info->buf_info_thread[i_thread] = (thread_info) {
             .id_thread  = POISON_ID,
@@ -87,6 +89,17 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
         };
 
         PRINT_STEP (int_info->buf_info_thread[i_thread].num_thread, %ld);
+    }
+
+    for (; i_thread < int_info->max_threads; i_thread++)
+    {
+        int_info->buf_info_thread[i_thread] = (thread_info) {
+            .id_thread  = POISON_ID,
+            .num_thread = POISON_NUM_THREAD,
+            .x1         = X1,
+            .x2         = X1 + STEP_X,
+            .step       = STEP_X
+        };
     }
 
     int_info->x1 = X1;

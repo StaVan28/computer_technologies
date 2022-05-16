@@ -23,6 +23,7 @@ int main (const int argc, const char* argv[])
     integral_info int_info = {};
     integral_info_construct (&int_info, argv);
 
+
     for (ssize_t i_thread = 0; i_thread < int_info.max_threads; i_thread++)
     {
         int ret_pthread_create = pthread_create ( &(int_info.buf_info_thread[i_thread].id_thread),  \

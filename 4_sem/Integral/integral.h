@@ -6,6 +6,13 @@
 
 #include <stdint.h>
 
+//------------------------------------
+//      CONSTS
+//------------------------------------
+
+// DON'T TOUCH
+static const ssize_t POISON_NUM_THREAD = -1;
+
 //-----------------------------------------
 
 // USER SETTING
