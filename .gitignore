@@ -1,6 +1,7 @@
 a.out
 token.txt
 *.o
+*.out
 main1.c
 
 write_fifo
