@@ -50,3 +50,16 @@ int main (const int argc, const char* argv[])
 }
 
 //------------------------------------
+
+//
+// Optimizations:
+// 1) divide all threds to 
+//     a) empty, but work  
+//     b) useful
+//     c) empty, not work
+// 2) create local params in integral func
+// 3) round up cache on CACHE LINE SIZE 
+// 4) main idea:
+//     all working threads must do the same amount of work.
+//     (include empty, but do not take into account their amount)
+// 
