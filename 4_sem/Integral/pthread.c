@@ -96,7 +96,7 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
     {
         int_info->buf_info_thread[i_thread] = (thread_info) {
             .id_thread  = POISON_ID,
-            .num_thread = POISON_NUM_THREAD,
+            .num_thread = i_thread % int_info->online_threads,
             .x1         = X1,
             .x2         = X1 + STEP_X,
             .step       = STEP_X
