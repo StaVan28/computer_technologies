@@ -40,7 +40,8 @@ int main (const int argc, const char* argv[])
         if (ret_pthread_join < 0)
             ERROR_INFO ("pthread_join");
 
-        int_info.sum += int_info.buf_info_thread[i_thread].sum;
+        if (i_thread >= int_info.empty_threads)
+            int_info.sum += int_info.buf_info_thread[i_thread].sum;
     }
 
     printf ("\nSUM [%Lf]\n", int_info.sum);
