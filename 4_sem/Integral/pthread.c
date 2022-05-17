@@ -17,7 +17,8 @@
 //------------------------------------
 
 // DON'T TOUCH
-static const pthread_t POISON_ID = 0;
+static const pthread_t POISON_ID  = 0;
+static const int       DIGIT_BASE = 10;
 
 //------------------------------------
 
