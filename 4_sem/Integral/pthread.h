@@ -16,8 +16,8 @@ typedef struct
     ssize_t   num_thread;       // logical number of thread
 
     // data for current task
-    double      x1;             // local border
-    double      x2;             // local border
+    double x1;                  // local border
+    double x2;                  // local border
 
     long double step;
     long double sum;            // local sum
