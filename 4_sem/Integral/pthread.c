@@ -32,8 +32,11 @@ static void         roundup_cache_line_free  (thread_info* ptr);
 void integral_info_construct (integral_info* int_info, const char* argv[])
 {
     int_info->input_threads = get_input_threads (argv);
-    if (int_info-> input_threads < 0)
-        ERROR_INFO ("int_info->input_threads");
+    if (int_info->input_threads < 0)
+    {
+        errno = EINVAL;
+        ERROR_INFO ("Launch invalid arg");
+    }
 
     PRINT_STEP (int_info-> input_threads, %ld);
 
@@ -155,21 +158,9 @@ static ssize_t get_input_threads (const char* argv[])
 
     ssize_t inp_digit = strtol (argv[1], &end_digit_str, DIGIT_BASE);
 
-    if (errno != 0)
+    if (errno != 0 || *end_digit_str != '\0' || inp_digit < 1)
     {
-        perror ("ERROR! strtol(): smth went wrong...");
-        return -1;
-    }
-
-    if (*end_digit_str != '\0')
-    {
-        perror ("ERROR! strtol(): not a number...");
-        return -1;
-    }
-
-    if (inp_digit < 1)
-    {
-        perror ("ERROR! Please, input natural number\n");
+        fprintf (stderr, "Launch: %s __numb>0__\n", argv[0]);
         return -1;
     }
 
