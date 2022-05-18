@@ -8,7 +8,6 @@
 #include <unistd.h>     // sysconf()
 #include <mm_malloc.h>  // _mm_malloc() 
 
-#include "integral.h"
 #include "debug.h"
 #include "pthread.h"
 
@@ -29,7 +28,8 @@ static void         roundup_cache_line_free  (thread_info* ptr);
 
 //------------------------------------
 
-void integral_info_construct (integral_info* int_info, const char* argv[])
+void integral_info_construct (integral_info* int_info, const char* argv[],    \
+                              long double x1, long double x2, long double step)
 {
     int_info->input_threads = get_input_threads (argv);
     if (int_info->input_threads < 0)
@@ -39,6 +39,15 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
     }
 
     PRINT_STEP (int_info-> input_threads, %ld);
+
+    int_info->x1 = x1;
+    PRINT_STEP (int_info->x1, %lf);
+
+    int_info->x2 = x2;
+    PRINT_STEP (int_info->x2, %lf);
+
+    int_info->step = step;
+    PRINT_STEP (int_info->step, %Lf);
 
     int_info->online_threads = sysconf (_SC_NPROCESSORS_ONLN);
     if (int_info->online_threads < 0)
@@ -65,8 +74,8 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
         ERROR_INFO ("roundup_cache_line_alloc");
 
     long double delta_x = ( int_info->max_threads > int_info->online_threads ) ?
-                          ( (X2 - X1) / int_info->online_threads )             :
-                          ( (X2 - X1) / int_info-> input_threads )             ;    
+                          ( (x2 - x1) / int_info->online_threads )             :
+                          ( (x2 - x1) / int_info-> input_threads )             ;
 
     // fill emptys treads
     ssize_t i_thread = 0;
@@ -75,9 +84,9 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
         int_info->buf_info_thread[i_thread] = (thread_info) {
             .id_thread  = POISON_ID,
             .num_thread = i_thread,
-            .x1         = X1,
-            .x2         = X1 + delta_x,
-            .step       = STEP_X
+            .x1         = x1,
+            .x2         = x1 + delta_x,
+            .step       = step
         };
     }
 
@@ -87,9 +96,9 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
         int_info->buf_info_thread[i_thread] = (thread_info) {
             .id_thread  = POISON_ID,
             .num_thread = i_thread,
-            .x1         = X1 +  i_onl_thread      * delta_x,
-            .x2         = X1 + (i_onl_thread + 1) * delta_x,
-            .step       = STEP_X
+            .x1         = x1 +  i_onl_thread      * delta_x,
+            .x2         = x1 + (i_onl_thread + 1) * delta_x,
+            .step       = step
         };
 
         PRINT_STEP (int_info->buf_info_thread[i_thread].num_thread, %ld);
@@ -101,20 +110,11 @@ void integral_info_construct (integral_info* int_info, const char* argv[])
         int_info->buf_info_thread[i_thread] = (thread_info) {
             .id_thread  = POISON_ID,
             .num_thread = i_thread % int_info->online_threads,
-            .x1         = X1,
-            .x2         = X1 + STEP_X,
-            .step       = STEP_X
+            .x1         = x1,
+            .x2         = x1 + step,
+            .step       = step
         };
     }
-
-    int_info->x1 = X1;
-    PRINT_STEP (int_info->x1, %lf);
-
-    int_info->x2 = X2;
-    PRINT_STEP (int_info->x2, %lf);
-
-    int_info->step = STEP_X;
-    PRINT_STEP (int_info->step, %Lf);
 }
 
 //------------------------------------

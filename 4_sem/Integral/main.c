@@ -21,8 +21,7 @@ int main (const int argc, const char* argv[])
     }
 
     integral_info int_info = {};
-    integral_info_construct (&int_info, argv);
-
+    integral_info_construct (&int_info, argv, X1, X2, STEP_X);
 
     for (ssize_t i_thread = 0; i_thread < int_info.max_threads; i_thread++)
     {

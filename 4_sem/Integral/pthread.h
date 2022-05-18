@@ -16,8 +16,8 @@ typedef struct
     ssize_t   num_thread;       // logical number of thread
 
     // data for current task
-    double x1;                  // local border
-    double x2;                  // local border
+    long double x1;             // local border of thread
+    long double x2;             // local border of thread
 
     long double step;
     long double sum;            // local sum
@@ -29,15 +29,16 @@ typedef struct
 // main struct of proj
 typedef struct
 {
-    ssize_t  input_threads;      // input number
-    ssize_t online_threads;      // num of online threads
-    ssize_t  empty_threads;      // threads for making linear dependence
-    ssize_t    max_threads;      // max threads for working
+    // topology
+    ssize_t  input_threads;             // input number
+    ssize_t online_threads;             // num of online threads
+    ssize_t  empty_threads;             // threads for making linear dependence
+    ssize_t    max_threads;             // max threads for working
 
     thread_info* buf_info_thread;       // !!Need to round up on size of cache line 
 
-    double x1;
-    double x2;
+    long double x1;
+    long double x2;
 
     long double step;
     long double sum;
@@ -46,8 +47,9 @@ typedef struct
 
 //------------------------------------
 
-void integral_info_construct (integral_info* info, const char* argv[]);
-void integral_info_destruct  (integral_info* info);
+void integral_info_construct (integral_info* int_info, const char* argv[],    \
+                              long double x1, long double x2, long double step);
+void integral_info_destruct  (integral_info* int_info);
 
 //------------------------------------------------------------
 
