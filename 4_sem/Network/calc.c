@@ -109,11 +109,9 @@ int Integrate (int n_threads, double begin, double end, func foo, double* const 
         }
     }
 
-
-    int check = 0;
     for (int i = 0; i < n_thread_create; i++) {
 
-        check = pthread_create(&threads[i], &attrs[i], start_routine, (void* ) infosp[i]);
+        int check = pthread_create(&threads[i], &attrs[i], start_routine, (void*) infosp[i]);
         if (check != 0) {
             perror("pthread_create");
             error = E_THREAD;
@@ -124,7 +122,7 @@ int Integrate (int n_threads, double begin, double end, func foo, double* const 
     double res = 0;
     for (int i = 0; i < n_threads; i++) {
 
-        check = pthread_join(threads[i], NULL);
+        int check = pthread_join(threads[i], NULL);
         if (check != 0) {
             perror("pthread_join calc:");
             error = E_THREAD;
@@ -134,7 +132,7 @@ int Integrate (int n_threads, double begin, double end, func foo, double* const 
         res += infosp[i]->res;
     }
 
-   * result = res;
+   *result = res;
 
 exit_all:
 

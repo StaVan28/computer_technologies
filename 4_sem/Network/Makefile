@@ -31,8 +31,8 @@ RLS_MD = -g0 -O2
 
 # compiler settings
 CC         = gcc
-WARNINGS  += -Wall -Wextra
-  CFLAGS   = -lm -pthread -fPIC -g3
+WARNINGS  += -Wall -Wextra      -std=c11
+  CFLAGS   = -lm -pthread -fPIC -std=c11 
  LDFLAGS  += -lm -pthread
 LIBFLAGS  +=
 INFO_LCOV  = $(addsuffix .info, $(BIN))

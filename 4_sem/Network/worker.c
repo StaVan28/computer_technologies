@@ -96,7 +96,7 @@ int connect_to_server (struct sockaddr_in serv_addr, int *const error) {
         goto exit;
     }
 
-    printf("    CONNECT!!!!!!!!\n");
+    printf("-   CONNECT TO SERVER\n");
 
 exit:
 

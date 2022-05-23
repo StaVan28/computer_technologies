@@ -184,7 +184,7 @@ int get_tcp_connections (struct tasks_for_workers* tasks) {
         }
 
         tasks->task[n_connected_sockets].socket = new_sock;
-        printf("--- Success connect ---\n");
+        printf("-   CONNECT TO CLIENT\n");
     }
 
 
