@@ -70,7 +70,7 @@ divide_work (unsigned n_machines, unsigned n_threads,
         goto exit_free_res;
     }
 
-    for (unsigned i = 0; i < n_workers - 1; ++i) {
+    for (unsigned i = 0; i < n_workers - 1; i++) {
 
         res->task[i].w_info.n_threads = n_threads / n_workers;
         res->task[i].w_info.begin = begin;
@@ -109,7 +109,7 @@ void dump_tasks (struct tasks_for_workers* tasks) {
         return;
     }
 
-    for (int i = 0; i < tasks->size; ++i) {
+    for (int i = 0; i < tasks->size; i++) {
         printf ("[%d]:\nn_nhreads: %d\nbegin: %f\nend: %f\n",
                 i, tasks->task[i].w_info.n_threads,
                 tasks->task[i].w_info.begin, tasks->task[i].w_info.end);
@@ -219,7 +219,7 @@ int get_result (struct tasks_for_workers* tasks, double* res) {
     int check = 0;
 
     int i = 0;
-    for (; i < tasks->size; ++i) {
+    for (; i < tasks->size; i++) {
 
         check = pthread_create (&threads[i], NULL, work_handler, (void* ) &tasks->task[i]);
 

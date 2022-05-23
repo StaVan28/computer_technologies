@@ -51,7 +51,7 @@ struct sockaddr_in get_hello_message (int* error) {
         recvfrom (sk, &server_tcp_port, sizeof (int), 0,
                   (struct sockaddr *) &peer_addr, &peer_addr_len);
 
-        ++i;
+        i++;
     }
 
     struct sockaddr_in res;

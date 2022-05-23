@@ -82,7 +82,7 @@ int Integrate (int n_threads, double begin, double end, func foo, double* const 
         goto exit_infosp;
     }
 
-    pthread_attr_t* attrs = (pthread_attr_t*) malloc(n_thread_create*  sizeof(pthread_attr_t));
+    pthread_attr_t* attrs = (pthread_attr_t*) malloc(n_thread_create * sizeof(pthread_attr_t));
 
     if (attrs == NULL) {
         perror("attrs allocation");
@@ -90,7 +90,7 @@ int Integrate (int n_threads, double begin, double end, func foo, double* const 
         goto exit_attrs;
     }
 
-    for (int i = 0; i < n_thread_create; ++i) {
+    for (int i = 0; i < n_thread_create; i++) {
 
         int check = pthread_attr_init(attrs + i);
         if (check != 0) {
@@ -111,7 +111,7 @@ int Integrate (int n_threads, double begin, double end, func foo, double* const 
 
 
     int check = 0;
-    for (int i = 0; i < n_thread_create; ++i) {
+    for (int i = 0; i < n_thread_create; i++) {
 
         check = pthread_create(&threads[i], &attrs[i], start_routine, (void* ) infosp[i]);
         if (check != 0) {
@@ -122,7 +122,7 @@ int Integrate (int n_threads, double begin, double end, func foo, double* const 
     }
 
     double res = 0;
-    for (int i = 0; i < n_threads; ++i) {
+    for (int i = 0; i < n_threads; i++) {
 
         check = pthread_join(threads[i], NULL);
         if (check != 0) {
@@ -138,7 +138,7 @@ int Integrate (int n_threads, double begin, double end, func foo, double* const 
 
 exit_all:
 
-    for (int i = 0; i < n_thread_create; ++i)
+    for (int i = 0; i < n_thread_create; i++)
         pthread_attr_destroy(&attrs[i]);
 
     free(attrs);
@@ -154,7 +154,7 @@ exit_infosp:
 
 exit_threads:
 
-    for (int i = 0; i < cpuInfo.n_cpu; ++i)
+    for (int i = 0; i < cpuInfo.n_cpu; i++)
         free(cpuInfo.cpus[i].processors);
 
     free(cpuInfo.cpus);

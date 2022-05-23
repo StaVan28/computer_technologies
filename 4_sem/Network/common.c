@@ -81,7 +81,7 @@ void run_server(int n_threads, int n_machines) {
     printf ("res: %f\n", res);
 
 exit:
-    for (int i = 0; i < tasks->size; ++i) {
+    for (int i = 0; i < tasks->size; i++) {
         close (tasks->task[i].socket);
     }
 }
