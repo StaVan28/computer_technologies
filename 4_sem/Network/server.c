@@ -1,7 +1,6 @@
 #include "common.h"
 #include "server.h"
 
-
 static int create_server_socket (int* server_socket);
 
 void* work_handler (void* arg) {
@@ -140,7 +139,7 @@ int send_hello_message () {
     bc_addr.sin_addr.s_addr = htonl (INADDR_BROADCAST);
 
     int msg = TCP_PORT;
-    if (sendto (sk, &msg, sizeof msg, 0, (struct sockaddr* ) &bc_addr, sizeof bc_addr) < 0) {
+    if (sendto (sk, &msg, sizeof msg, 0, (struct sockaddr*) &bc_addr, sizeof bc_addr) < 0) {
         close (sk);
         return E_SOCK;
     }
@@ -178,7 +177,7 @@ int get_tcp_connections (struct tasks_for_workers* tasks) {
     for (; n_connected_sockets < tasks->size; ++n_connected_sockets) {
 
 
-        new_sock = accept (serv_sock, (struct sockaddr* ) &new_addr, &new_addr_len);
+        new_sock = accept (serv_sock, (struct sockaddr*) &new_addr, &new_addr_len);
         if (new_sock < 0) {
             error = E_CONN;
             goto exit_close_sockets;
@@ -325,7 +324,7 @@ static int create_server_socket (int* server_socket) {
     serv_addr.sin_port = htons (TCP_PORT);
 
 
-    if (bind (serv_sock, (struct sockaddr* ) &serv_addr, sizeof serv_addr) < 0) {
+    if (bind (serv_sock, (struct sockaddr*) &serv_addr, sizeof serv_addr) < 0) {
         //FIXME: debug
         perror ("binding server socket");
         return E_SOCK;

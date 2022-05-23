@@ -113,7 +113,7 @@ void run_worker () {
         return;
     }
 
-    printf ("--- Success finished ---\n");
+    printf ("   END!!!!!!!\n");
 
     close (serv_socket);
 }
