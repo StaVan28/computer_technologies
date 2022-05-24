@@ -224,7 +224,6 @@ int get_result (struct tasks_for_workers* tasks, double* res) {
         check = pthread_create (&threads[i], NULL, work_handler, (void* ) &tasks->task[i]);
 
         if (check != 0) {
-            //FIXME: debug
             perror ("pthread_create work_handler:");
             error = E_THREAD;
             goto exit_free_all;
@@ -244,11 +243,6 @@ int get_result (struct tasks_for_workers* tasks, double* res) {
                 fprintf (stderr, "check = %d\n", check);
             }
 
-            // if (part == NULL) {
-            //     fprintf (stderr, "part is NULL\n");
-            // }
-
-            // perror ("pthread_join work_handler");
             error = E_THREAD;
             goto exit_free_all;
         }
@@ -287,26 +281,23 @@ static int create_server_socket (int* server_socket) {
     serv_sock = socket (AF_INET, SOCK_STREAM, 0);
 
     if (serv_sock == -1) {
-        //FIXME: debug
         perror ("creating server socket:");
         return E_SOCK;
     }
 
     ret = setsockopt (serv_sock, SOL_SOCKET, SO_REUSEADDR, &true, sizeof true);
     if (ret != 0) {
-        //FIXME: debug
         perror ("setsockopt for server socket:");
         return E_SOCK;
     }
 
     struct timeval timeout = {
-            .tv_sec = 10,
+            .tv_sec  = 10,
             .tv_usec = 0
     };
 
     ret = setsockopt (serv_sock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof timeout);
     if (ret != 0) {
-        //FIXME: debug
         perror ("setsockopt (timeout) for server socket:");
         return E_SOCK;
     }
@@ -319,13 +310,12 @@ static int create_server_socket (int* server_socket) {
 
     memset (&serv_addr, 0, sizeof serv_addr);
 
-    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_family      = AF_INET;
     serv_addr.sin_addr.s_addr = htonl (INADDR_ANY);
-    serv_addr.sin_port = htons (TCP_PORT);
+    serv_addr.sin_port        = htons (TCP_PORT);
 
 
     if (bind (serv_sock, (struct sockaddr*) &serv_addr, sizeof serv_addr) < 0) {
-        //FIXME: debug
         perror ("binding server socket");
         return E_SOCK;
     }

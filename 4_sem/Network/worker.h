@@ -11,8 +11,7 @@
 #include <arpa/inet.h>
 
 
-struct sockaddr_in
-get_hello_message (int *error);
+struct sockaddr_in get_hello_message (int *error);
 
 int connect_to_server (struct sockaddr_in serv_addr, int *error);
 

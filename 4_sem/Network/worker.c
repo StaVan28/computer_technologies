@@ -18,9 +18,9 @@ struct sockaddr_in get_hello_message (int* error) {
 
     memset (&sock_addr, 0, sizeof sock_addr);
 
-    sock_addr.sin_family = AF_INET;
-    sock_addr.sin_port = htons (UDP_PORT);
+    sock_addr.sin_family      = AF_INET;
     sock_addr.sin_addr.s_addr = htonl (INADDR_ANY);
+    sock_addr.sin_port        = htons (UDP_PORT);
 
     int sk = socket (AF_INET, SOCK_DGRAM, 0);
 
@@ -44,12 +44,27 @@ struct sockaddr_in get_hello_message (int* error) {
 
     int server_tcp_port = 0;
 
+    struct timeval timeout = {
+            .tv_sec = 20,
+            .tv_usec = 0
+    };
+
+    int ret = setsockopt (sk, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof timeout);
+    if (ret != 0) {
+        *error = E_SOCK;
+        return peer_addr;
+    }
+
     int i = 0;
     while (server_tcp_port != TCP_PORT) {
         server_tcp_port = 0;
 
-        recvfrom (sk, &server_tcp_port, sizeof (int), 0,
-                  (struct sockaddr *) &peer_addr, &peer_addr_len);
+        int ret = recvfrom (sk, &server_tcp_port, sizeof (int), 0,
+                            (struct sockaddr*) &peer_addr, &peer_addr_len);
+        if (ret < 0) {
+            perror("end time:");
+            exit(EXIT_FAILURE);
+        }
 
         i++;
     }
@@ -59,8 +74,8 @@ struct sockaddr_in get_hello_message (int* error) {
     memset (&res, 0, sizeof res);
 
     res.sin_family = AF_INET;
-    res.sin_port = htons (TCP_PORT);
-    res.sin_addr = peer_addr.sin_addr;
+    res.sin_port   = htons(TCP_PORT);
+    res.sin_addr   = peer_addr.sin_addr;
 
     if (error)
         *error = SUCCESS;

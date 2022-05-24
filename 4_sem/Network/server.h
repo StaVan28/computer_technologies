@@ -1,6 +1,7 @@
 #pragma once
 
 #define _GNU_SOURCE
+#include <errno.h>
 #include <pthread.h>
 #include <sys/types.h>
 #include <sys/socket.h>

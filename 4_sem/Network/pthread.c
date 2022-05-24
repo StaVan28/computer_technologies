@@ -116,10 +116,10 @@ exit_success:
 int set_attrs (struct cpu_info cpu_info, pthread_attr_t* attrs, int size) {
 
     for (int i = 0; i < size; i++) {
-        int num_cpu = i % cpu_info.n_cpu;
-        int num_proc =(i / cpu_info.n_cpu) % cpu_info.cpus[num_cpu].n_proc;
+        int num_cpu  =  i % cpu_info.n_cpu;
+        int num_proc = (i / cpu_info.n_cpu) % cpu_info.cpus[num_cpu].n_proc;
 
-        cpu_set_t  cpu_set;
+        cpu_set_t cpu_set;
         CPU_ZERO(&cpu_set);
         CPU_SET(cpu_info.cpus[num_cpu].processors[num_proc], &cpu_set);
 
@@ -134,7 +134,7 @@ struct thread_info** build_cache_aligned_thread_info (int n_threads) {
 
     long cache_line_size = sysconf (_SC_LEVEL1_DCACHE_LINESIZE);
     long page_size = sysconf (_SC_PAGESIZE);
-    int one_info_size = (sizeof (struct thread_info) / cache_line_size + 1)*  cache_line_size;
+    int one_info_size = (sizeof (struct thread_info) / cache_line_size + 1) * cache_line_size;
 
     char* aligned_mem = (char*) memalign(page_size, n_threads*  one_info_size);
     if (aligned_mem == NULL) {
@@ -148,13 +148,13 @@ struct thread_info** build_cache_aligned_thread_info (int n_threads) {
     }
 
     for (int i = 0; i < n_threads; i++)
-        infosp[i] = (struct thread_info* ) (aligned_mem + i*  one_info_size);
+        infosp[i] = (struct thread_info*) (aligned_mem + i * one_info_size);
 
     return infosp;
 }
 
 int fill_thread_info (struct thread_info** infosp, int info_size,
-                       struct thread_info init, int n_threads) {
+                      struct thread_info init, int n_threads) {
 
     if (infosp == NULL || n_threads == 0)
         return -1;
